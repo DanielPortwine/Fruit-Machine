@@ -1,0 +1,82 @@
+index:
+
+create account or login
+if logged in redirect to play
+
+
+game:
+
+click button to spin fruit machine - gain 5xp
+if you get 5 of the same you get 5x the items and 2 edit point - gain 100 xp
+if you get 4 of the same you get 4x the items and 1 edit point - gain 75 xp
+if you get 3 of the same you get 3x the items - gain 50 xp
+if you get 2 of the same you get 2x the items - gain 10 xp
+if none are the same you get nothing
+track how many times fruit machine spun
+track number of 3s and 2s
+50 spins per day
+chance of each item is varied with lower value items being far more common than higher value items and good items being slightly more common than bad items
+each level requires 1000 xp to level up
+as you level up you unlock new items
+
+level 0-9 items:
++1 point
++2 points
++5 points
+-1 points
+-2 points
+-5 points
+
+level 10 new items:
++10 points
+-10 points
++1 daily spin
+-1 daily spin (if on last spin; -10 points)
+
+level 20 new items:
++20 points
+-20 points
++1 Beer (2x xp for 1 minute. 30 minute cooldown)
++1 Ice cube (first column remains on same item for 2 spins. 5 minute cooldown)
+
+level 30 new items:
++50 points
+-50 points
++1 Ice bucket (first 2 columns remain on same item for 2 spins. 1 hour cooldown)
+
+level 40 new items:
++100 points
+-100 points
++1 Screwdriver (re-spins a random column. 6 hour cooldown)
++2 Beers
+
+level 50 new items:
++2 Ice cubes
++2 Screwdrivers
++3 Beers
++1 Vodka (3x xp for 2 minutes. 1 day cooldown)
+
+
+leaderboard:
+
+top player has special entry
+2 categories: xp and points
+2 sub-categories: global following
+your rank is displayed at the top for each category / sub-category
+your entry includes position number, level, points and username
+
+
+stats:
+
+total spins
+number of 5s, 4s, 3s, 2s and nothings
+xp
+points
+number of each powerup used
+date account created
+total edit points gained
+
+
+edit:
+
+spend edit points to alter the chances of each item
