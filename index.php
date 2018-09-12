@@ -1,3 +1,9 @@
+<?php
+require_once('header.php');
+?>
 <nav class="navbar navbar-dark bg-dark">
-	<h1>Hello world</h1>
+	<p class="navbar-brand">Hello world</p>
 </nav>
+<?php
+require_once('footer.php');
+?>
