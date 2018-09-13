@@ -1,3 +1,13 @@
 body{
 	
 }
+button{
+	border:none;
+}
+#signUpForm{
+	display:none;
+}
+#newsText{
+	width:300px;
+	display:inline
+}

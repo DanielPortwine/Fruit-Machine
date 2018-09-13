@@ -1,7 +1,36 @@
 <?php
 require_once('header.php');
 ?>
-
+<div class="mx-auto mt-5 card" style="width:500px">
+	<h5 class="card-header text-center" id="loginStateTitle">Login</h5>
+	<div class="card-body">
+		<form action="login.php" method="post" id="loginForm">
+			<div class="form-group">
+				<input type="text" class="form-control" name="username" placeholder="Username" required>
+			</div>
+			<div class="form-group">
+				<input type="password" class="form-control" name="password" placeholder="Password" required>
+			</div>
+			<button type="submit" class="btn btn-success btn-block">Login</button>
+		</form>
+		<form action="signUp.php" method="post" id="signUpForm">
+			<div class="form-group">
+				<input type="text" class="form-control" name="username" placeholder="Username" required>
+			</div>
+			<div class="form-group">
+				<input type="email" class="form-control" name="email" placeholder="Email" required>
+			</div>
+			<div class="form-group">
+				<input type="password" class="form-control" name="password" placeholder="Password" required>
+			</div>
+			<div class="form-group">
+				<input type="checkbox" name="newsConsent" value="Yes"><p id="newsText"> I want to receive news about the site</p>
+			</div>
+			<button type="submit" class="btn btn-success btn-block">Sign up</button>
+		</form>
+		<button class="btn btn-default btn-sm float-right" id="loginStateButton">Sign up</button>
+	</div>
+</div>
 <?php
 require_once('footer.html');
 ?>
