@@ -4,6 +4,7 @@ require_once('header.php');
 <div class="mx-auto mt-5 card" style="width:500px">
 	<h5 class="card-header text-center" id="loginStateTitle">Login</h5>
 	<div class="card-body">
+		<!-- Login form -->
 		<form action="login.php" method="post" id="loginForm">
 			<div class="form-group">
 				<input type="text" class="form-control" name="username" placeholder="Username" required>
@@ -13,6 +14,7 @@ require_once('header.php');
 			</div>
 			<button type="submit" class="btn btn-success btn-block">Login</button>
 		</form>
+		<!-- Sign up form -->
 		<form action="signUp.php" method="post" id="signUpForm">
 			<div class="form-group">
 				<input type="text" class="form-control" name="username" placeholder="Username" required>
