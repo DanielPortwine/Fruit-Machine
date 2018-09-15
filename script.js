@@ -14,5 +14,10 @@ $(document).ready(function(){
 		}
 		$("#loginStateTitle").text(loginState);
 	});
+	// displays alerts
 	$('.alert').alert();
+	// logout
+	$("#logoutButton").click(function(){
+		window.location = 'logout.php';
+	});
 });

@@ -41,7 +41,9 @@ if (isset($_SESSION['alert'])) {
 		</ul>
 		<?php
 		if (isset($_SESSION['username'])) {
-			echo '<span class="navbar-text mr-5">' . $_SESSION['username'] . '</span>';
+			echo '<span class="navbar-text mr-3">' . $_SESSION['username'] . '</span>
+				<button class="btn btn-danger" id="logoutButton">Logout</button>
+				';
 		}
 		?>
 	</div>
