@@ -1,5 +1,6 @@
 <?php
 require_once('header.php');
+$_SESSION['page'] = 'index';
 if (isset($_SESSION['username'])) {
 	//echo '<script>window.location = "play.php";</script>';
 }

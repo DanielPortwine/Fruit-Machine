@@ -29,13 +29,16 @@ if (isset($_SESSION['alert'])) {
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<a href="index.php" class="navbar-brand">Fruit Machine</a>
-	<div class="collapse navbar-collapse" id="navbarText">
-		<div class="navbar-nav mr-auto">
-			<a class="nav-item nav-link" href="game.php">Play</a>
-			<a class="nav-item nav-link" href="leaderboard.php">Leaderboard</a>
-			<a class="nav-item nav-link" href="stats.php">Stats</a>
-			<a class="nav-item nav-link" href="edit.php">Edit</a>
-		</div>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarContent">
+		<ul class="navbar-nav mr-auto">
+			<li><a class="nav-item nav-link" id="playNav" href="play.php">Play</a></li>
+			<li><a class="nav-item nav-link" id="leaderboardNav" href="leaderboard.php">Leaderboard</a></li>
+			<li><a class="nav-item nav-link" id="statsNav" href="stats.php">Stats</a></li>
+			<li><a class="nav-item nav-link" id="editNav" href="edit.php">Edit</a></li>
+		</ul>
 		<?php
 		if (isset($_SESSION['username'])) {
 			echo '<span class="navbar-text mr-5">' . $_SESSION['username'] . '</span>';
