@@ -2,7 +2,7 @@
 require_once('header.php');
 $_SESSION['page'] = 'index';
 if (isset($_SESSION['username'])) {
-	//echo '<script>window.location = "play.php";</script>';
+	echo '<script>window.location = "play.php";</script>';
 }
 ?>
 <div class="mx-auto mt-5 card">
