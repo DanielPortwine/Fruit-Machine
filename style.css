@@ -4,6 +4,12 @@ body{
 button{
 	border:none;
 }
+.alert{
+	position:absolute;
+	left:20px;
+	bottom:20px;
+	width:auto;
+}
 #signUpForm{
 	display:none;
 }

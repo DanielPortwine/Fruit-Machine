@@ -4,6 +4,16 @@ $conn = new mysqli('localhost:3307','root','','fruitmachine');
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
+if (isset($_SESSION['alert'])) {
+	echo '<div class="alert alert-' . $_SESSION['alert-type'] . ' alert-dismissable fade show">
+			' . $_SESSION['alert'] . '
+			<button type="button" class="close ml-2" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>';
+	unset($_SESSION['alert']);
+	unset($_SESSION['alert-type']);
+}
 ?>
 <html>
 <head>

@@ -14,4 +14,5 @@ $(document).ready(function(){
 		}
 		$("#loginStateTitle").text(loginState);
 	});
+	$('.alert').alert()
 });
