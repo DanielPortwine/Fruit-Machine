@@ -1,19 +1,20 @@
-body{
-	
-}
-button{
+button {
 	border:none;
 }
-.alert{
+.alert {
 	position:absolute;
 	left:20px;
 	bottom:20px;
 	width:auto;
 }
-#signUpForm{
+.card{
+	max-width:500px;
+	width:100%;
+}
+#signUpForm {
 	display:none;
 }
-#newsText{
+#newsText {
 	width:300px;
 	display:inline
 }

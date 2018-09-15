@@ -1,7 +1,10 @@
 <?php
 require_once('header.php');
+if (isset($_SESSION['username'])) {
+	//echo '<script>window.location = "play.php";</script>';
+}
 ?>
-<div class="mx-auto mt-5 card" style="width:500px">
+<div class="mx-auto mt-5 card">
 	<h5 class="card-header text-center" id="loginStateTitle">Login</h5>
 	<div class="card-body">
 		<!-- Login form -->
