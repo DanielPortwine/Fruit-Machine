@@ -1,7 +1,7 @@
 <?php
 require_once('header.php');
-$rows = $conn->query("SELECT userID FROM users;")->num_rows;
 $taken = false;
+$rows = $conn->query("SELECT userID FROM users;")->num_rows;
 if ($rows > 0) {
 	foreach ($conn->query("SELECT username FROM users;") as $user) {
 		if ($_POST['username'] == $user['username']) {
@@ -25,10 +25,12 @@ if (!$taken) {
 	}
 	$conn->query("INSERT INTO users (username,email,news,pass,salt) VALUES ('{$_POST['username']}','{$_POST['email']}',{$consent},'{$password}','{$salt}');");
 	$_SESSION['alert'] = 'Account created';
+	$_SESSION['alert-type'] = 'success';
 	echo '<script>window.location = "play.php";</script>';
 }
 else {
 	$_SESSION['alert'] = 'Username taken';
+	$_SESSION['alert-type'] = 'danger';
 	echo '<script>window.location = "index.php";</script>';
 }
 ?>
