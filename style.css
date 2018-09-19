@@ -1,3 +1,8 @@
+html, body{
+	height:100%;
+	margin:0px;
+	padding:0px;
+}
 button {
 	border:none;
 }
@@ -10,6 +15,12 @@ button {
 .card{
 	max-width:500px;
 	width:100%;
+}
+.vertical-center{
+	min-height:calc(100% - 56px);
+	min-height:calc(100vh - 56px);
+	display:flex;
+	align-items:center;
 }
 #signUpForm {
 	display:none;
