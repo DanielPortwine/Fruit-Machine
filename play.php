@@ -7,23 +7,26 @@ if (empty($_SESSION['username'])) {
 }
 ?>
 <div class="vertical-center">
-	<div class="container text-center">
-	  <div class="row">
-		<div class="col-sm">
-		  <img src="images/pineapple.png">
+	<div class="container text-center mb-5">
+		<div class="row">
+			<div class="col-sm">
+				<img class="itemImage" id="item1" src="images/begin.png">
+			</div>
+			<div class="col-sm">
+				<img class="itemImage" id="item2" src="images/begin.png">
+			</div>
+			<div class="col-sm">
+				<img class="itemImage" id="item3" src="images/begin.png">
+			</div>
+			<div class="col-sm">
+				<img class="itemImage" id="item4" src="images/begin.png">
+			</div>
+			<div class="col-sm">
+				<img class="itemImage" id="item5" src="images/begin.png">
+			</div>
 		</div>
-		<div class="col-sm">
-		  <img src="images/strawberry.png">
+		<div class="row">
+			<button class="btn btn-success ml-auto mr-auto mt-2" id="spinButton">SPIN</button>
 		</div>
-		<div class="col-sm">
-		  <img src="images/pineapple.png">
-		</div>
-		<div class="col-sm">
-		  <img src="images/strawberry.png">
-		</div>
-		<div class="col-sm">
-		  <img src="images/pineapple.png">
-		</div>
-	  </div>
 	</div>
 </div>
