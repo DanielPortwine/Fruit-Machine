@@ -58,7 +58,6 @@ cherry
 lemon
 +100 points
 -100 points
-+1 Screwdriver (re-spins a random column. 30 minute cooldown)
 +2 Beers
 malfunction (only happens if 3 or more occur. can't spin for 3 days)
 

@@ -20,16 +20,28 @@ $(document).ready(function(){
 	$("#logoutButton").click(function(){
 		window.location = 'logout.php';
 	});
-	// random items
-	var items = ['pineapple','strawberry','peach'];
+	var items = [];
+	$.get("findItems.php",function(data){
+		items = data.split(',');
+		var allItems = "";
+		for (i=0;i<items.length;i++){
+			allItems += '<img src="images/items/' + items[i] + '.png">';
+		}
+		$("#allItems").html(allItems);
+	});
 	var canSpin = true;
+	var itemsSpun = []
 	function changeItem(itemNo,item){
 		itemNo = "#item" + itemNo;
-		$(itemNo).attr("src","images/"+item+".png");	
+		$(itemNo).attr("src","images/items/"+item+".png");
 	}
 	function resetSpin(){
+		$.post("saveResults.php", {
+			result: itemsSpun
+		});
 		canSpin = true;
 		$("#spinButton").attr("disabled",false);
+		itemsSpun = [];
 	}
 	function spin(){
 		if (canSpin == true){
@@ -38,12 +50,20 @@ $(document).ready(function(){
 			for (i=1;i<=5;i++){
 				var itemNo = "#item" + i;
 				$(itemNo).attr("src","images/spinning.gif");
-				var item = items[Math.floor(Math.random()*items.length)];
+				var item = items[itemsSpun[i-1]];
 				setTimeout(changeItem,i*2000,i,item);
 			}
 			setTimeout(resetSpin,10000);
 		}
 	}
-	// user spins
-	$("#spinButton").click(spin);
+	$("#spinButton").click(function(){
+		// fetch the results
+		$.get("spin.php",function(data){
+			var strArr = data.split(',');
+			for(i=0;i<strArr.length;i++){
+				itemsSpun.push(parseInt(strArr[i]));
+			}
+			spin();
+		});
+	});
 });

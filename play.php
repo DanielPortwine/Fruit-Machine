@@ -26,7 +26,10 @@ if (empty($_SESSION['username'])) {
 			</div>
 		</div>
 		<div class="row">
-			<button class="btn btn-success ml-auto mr-auto mt-2" id="spinButton">SPIN</button>
+			<button class="btn btn-lg btn-success ml-auto mr-auto mt-2" id="spinButton">SPIN</button>
+		</div>
+		<div class="row">
+			<div class="ml-auto mr-auto mt-5" id="allItems"></div>
 		</div>
 	</div>
 </div>
