@@ -1,9 +1,6 @@
 <?php
 session_start();
-$conn = new mysqli('localhost:3307','root','','fruitmachine');
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+require_once('connection.php');
 if (isset($_SESSION['alert'])) {
 	echo '<div class="alert alert-' . $_SESSION['alert-type'] . ' alert-dismissable fade show">
 			' . $_SESSION['alert'] . '
