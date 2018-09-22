@@ -1,4 +1,8 @@
 $(document).ready(function(){
+	function fadeAlert(){
+		$("#alertBox").fadeOut();
+	}
+	setTimeout(fadeAlert,5000);
 	// login and sign up form swapping
 	var loginState = 'Login';
 	$("#loginStateButton").click(function(){
@@ -51,19 +55,66 @@ $(document).ready(function(){
 				var itemNo = "#item" + i;
 				$(itemNo).attr("src","images/spinning.gif");
 				var item = items[itemsSpun[i-1]];
-				setTimeout(changeItem,i*2000,i,item);
+				setTimeout(changeItem,i*0,i,item);
 			}
-			setTimeout(resetSpin,10000);
+			setTimeout(resetSpin,0);
 		}
 	}
 	$("#spinButton").click(function(){
 		// fetch the results
 		$.get("spin.php",function(data){
-			var strArr = data.split(',');
-			for(i=0;i<strArr.length;i++){
-				itemsSpun.push(parseInt(strArr[i]));
+			if (data[0] == '<'){
+				$('head').html(data);
+			} else {
+				$.get("spinsLeft.php",function(data){
+					$("#spinsLeft").text(data);
+				});
+				var strArr = data.split(',');
+				for(i=0;i<strArr.length;i++){
+					itemsSpun.push(parseInt(strArr[i]));
+				}
+				spin();
 			}
-			spin();
 		});
+	});
+	// daily spin button countdown
+	$.get("dailySpinTime.php",function(data){
+		data = new Date(parseInt(data));
+		setInterval(function(){
+			var curTime = new Date();
+			var difference = new Date(data - curTime);
+			difference.setDate(difference.getDate() - 1);
+			if (difference > 0){
+				$("#dailySpinButton").attr("disabled",true);
+				var days = difference.getDate();
+				var hours = difference.getHours();
+				var minutes = difference.getMinutes();
+				var seconds = difference.getSeconds();
+				var time = '';
+				if (days > 0){
+					hours += days * 24;
+				}
+				if (hours > 0){
+					time += hours + 'h';
+				}
+				if (minutes > 0 && hours == 0){
+					time += minutes + 'm';
+				}
+				if (seconds > 0 && minutes == 0){
+					time += seconds + 's';
+				}
+				$("#dailySpinTimeRemaining").text(' (' + time + ')');
+			} else {
+				$("#dailySpinButton").attr("disabled",false);
+			}
+		},1000);
+	});
+	$("#dailySpinButton").click(function(){
+		$.post("getDailySpins.php",function(data){
+			$('head').html(data);
+		});
+	});
+	$.get("spinsLeft.php",function(data){
+		$("#spinsLeft").text(data);
 	});
 });

@@ -26,10 +26,16 @@ if (empty($_SESSION['username'])) {
 			</div>
 		</div>
 		<div class="row">
-			<button class="btn btn-lg btn-success ml-auto mr-auto mt-2" id="spinButton">SPIN</button>
+			<p class="col-sm my-2">Spins remaining: <span id="spinsLeft"></span></p>
 		</div>
 		<div class="row">
-			<div class="ml-auto mr-auto mt-5" id="allItems"></div>
+			<button class="btn btn-lg btn-success mx-auto mt-2" id="spinButton">SPIN</button>
 		</div>
+		<div class="row">
+			<button class="btn btn-lg btn-success mx-auto mt-2" id="dailySpinButton">+50 spins<sub><span id="dailySpinTimeRemaining"></span></sub></button>
+		</div>
+		<!--<div class="row">
+			<div class="ml-auto mr-auto mt-5" id="allItems"></div>
+		</div>-->
 	</div>
 </div>

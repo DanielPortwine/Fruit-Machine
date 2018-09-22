@@ -3,14 +3,18 @@ session_start();
 require_once('connection.php');
 $result = $_POST['result'];
 $userData = mysqli_fetch_row($conn->query("SELECT * FROM users WHERE username = '{$_SESSION['username']}';"));
-$xp = $userData[8];
-$spins = $userData[11];
-$nothings = $userData[16];
-$twos = $userData[15];
-$threes = $userData[14];
-$fours = $userData[13];
-$fives = $userData[12];
+$spinsLeft = $userData[7];
+$xp = $userData[9];
+$spins = $userData[12];
+$nothings = $userData[17];
+$twos = $userData[16];
+$threes = $userData[15];
+$fours = $userData[14];
+$fives = $userData[13];
 
+if ($spinsLeft > 0){
+	$spinsLeft--;
+}
 $xp++;
 $spins++;
 
@@ -40,12 +44,12 @@ foreach ($itemsCount as $count){
 		$patternFound = true;
 	} else if ($count == 4){
 		$fours++;
-		$xp += 75;
+		$xp += 100;
 		$patternFound = true;
 		break;
 	} else if ($count == 5){
 		$fives++;
-		$xp += 100;
+		$xp += 500;
 		$patternFound = true;
 		break;
 	}
@@ -54,5 +58,5 @@ if (!$patternFound){
 	$nothings++;
 }
 $xpLevel = floor($xp/1000);
-$conn->query("UPDATE users SET xp={$xp},xpLevel={$xpLevel},spins={$spins},nothings={$nothings},twos={$twos},threes={$threes},fours={$fours},fives={$fives} WHERE username = '{$_SESSION['username']}';");
+$conn->query("UPDATE users SET xp={$xp},xpLevel={$xpLevel},spins={$spins},spinsLeft={$spinsLeft},nothings={$nothings},twos={$twos},threes={$threes},fours={$fours},fives={$fives} WHERE username = '{$_SESSION['username']}';");
 ?>

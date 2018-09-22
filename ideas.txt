@@ -7,8 +7,8 @@ if logged in redirect to play
 game:
 
 click button to spin fruit machine - gain 5xp
-if you get 5 of the same you get 5x the items and 2 edit point - gain 100 xp
-if you get 4 of the same you get 4x the items and 1 edit point - gain 75 xp
+if you get 5 of the same you get 5x the items and 2 edit point - gain 500 xp
+if you get 4 of the same you get 4x the items and 1 edit point - gain 100 xp
 if you get 3 of the same you get 3x the items - gain 50 xp
 if you get 2 of the same you get 2x the items - gain 10 xp
 if none are the same you get nothing
