@@ -29,3 +29,15 @@ button {
 	width:300px;
 	display:inline
 }
+#userLevel{
+	background-color:#222;
+	border-radius:5px 0px 0px 5px;
+}
+#userName{
+	background-color:#888;
+	color:#000;
+	border-radius:0px 5px 5px 0px;
+}
+#alertBox{
+	z-index:100;
+}

@@ -2,7 +2,7 @@
 session_start();
 require_once('connection.php');
 if (isset($_SESSION['alert'])) {
-	echo '<div class="alert alert-' . $_SESSION['alert-type'] . ' alert-dismissable fade show">
+	echo '<div class="alert alert-' . $_SESSION['alert-type'] . ' alert-dismissable fade show" id="alertBox">
 			' . $_SESSION['alert'] . '
 			<button type="button" class="close ml-2" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
@@ -39,7 +39,7 @@ if (isset($_SESSION['alert'])) {
 		</ul>
 		<?php
 		if (isset($_SESSION['username'])) {
-			echo '<span class="navbar-text mr-3">' . $_SESSION['username'] . '</span>
+			echo '<span class="navbar-text mr-3"><span class="px-2 py-1" id="userLevel">' . mysqli_fetch_row($conn->query("SELECT xplevel FROM users WHERE username = '{$_SESSION['username']}';"))[0] . '</span><span class="px-3 py-1" id="userName">' . $_SESSION['username'] . '</span></span>
 				<button class="btn btn-danger" id="logoutButton">Logout</button>
 				';
 		}

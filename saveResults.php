@@ -53,7 +53,6 @@ foreach ($itemsCount as $count){
 if (!$patternFound){
 	$nothings++;
 }
-print_r($itemsCount);
-$conn->query("UPDATE users SET xp={$xp},spins={$spins},nothings={$nothings},twos={$twos},threes={$threes},fours={$fours},fives={$fives} WHERE username = '{$_SESSION['username']}';");
-echo mysqli_error($conn);
+$xpLevel = floor($xp/1000);
+$conn->query("UPDATE users SET xp={$xp},xpLevel={$xpLevel},spins={$spins},nothings={$nothings},twos={$twos},threes={$threes},fours={$fours},fives={$fives} WHERE username = '{$_SESSION['username']}';");
 ?>
