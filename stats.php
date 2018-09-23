@@ -38,36 +38,39 @@ $email = $userData[2];
 			</div>
 		</div>
 		<div class="row">
-			<h4 class="col-sm text-left"><?php echo $level; ?></h4>
-			<h4 class="col-sm text-right"><?php echo $level + 1; ?></h4>
+			<h4 class="col-sm text-left"><?php echo $level; ?>
+			<span class="float-right"><?php echo $level + 1; ?></span></h4>
 		</div>
-		<div class="row">
-			<p class="col-sm text-right">Total spins:</p>
-			<p class="col-sm text-left"><?php echo $spins; ?></p>
-		</div>
-		<div class="row">
-			<p class="col-sm text-right">Fives:</p>
-			<p class="col-sm text-left"><?php echo $fives; ?></p>
-		</div>
-		<div class="row">
-			<p class="col-sm text-right">Fours:</p>
-			<p class="col-sm text-left"><?php echo $fours; ?></p>
-		</div>
-		<div class="row">
-			<p class="col-sm text-right">Threes:</p>
-			<p class="col-sm text-left"><?php echo $threes; ?></p>
-		</div>
-		<div class="row">
-			<p class="col-sm text-right">Doubles:</p>
-			<p class="col-sm text-left"><?php echo $twos; ?></p>
-		</div>
-		<div class="row">
-			<p class="col-sm text-right">Singles:</p>
-			<p class="col-sm text-left"><?php echo $nothings; ?></p>
-		</div>
-		<div class="row">
-			<p class="col-sm text-right">Date joined:</p>
-			<p class="col-sm text-left"><?php echo substr(date('d/m/Y H:i:s',$dateJoined),0,16); ?></p>
-		</div>
+		
+		<table class="table table-borderless">
+			<tr>
+				<td class="text-right p-1">Total spins:</td>
+				<td class="text-left p-1"><?php echo $spins; ?></p>
+			</tr>
+			<tr>
+				<td class="text-right p-1">Five of a kind:</td>
+				<td class="text-left p-1"><?php echo $fives; ?></p>
+			</tr>
+			<tr>
+				<td class="text-right p-1">Four of a kind:</td>
+				<td class="text-left p-1"><?php echo $fours; ?></p>
+			</tr>
+			<tr>
+				<td class="text-right p-1">Three of a kind:</td>
+				<td class="text-left p-1"><?php echo $threes; ?></p>
+			</tr>
+			<tr>
+				<td class="text-right p-1">Doubles:</td>
+				<td class="text-left p-1"><?php echo $twos; ?></p>
+			</tr>
+			<tr>
+				<td class="text-right p-1">Singles:</td>
+				<td class="text-left p-1"><?php echo $nothings; ?></p>
+			</tr>
+			<tr>
+				<td class="text-right p-1">Date joined:</td>
+				<td class="text-left p-1"><?php echo substr(date('d/m/Y H:i:s',$dateJoined),0,16); ?></p>
+			</tr>
+		</table>
 	</div>
 </div>

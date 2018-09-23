@@ -9,6 +9,9 @@ p{
 button {
 	border:none;
 }
+td{
+	width:50%;
+}
 .alert {
 	position:absolute;
 	left:20px;
