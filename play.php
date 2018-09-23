@@ -32,7 +32,7 @@ if (empty($_SESSION['username'])) {
 			<button class="btn btn-lg btn-success mx-auto mt-2" id="spinButton">SPIN</button>
 		</div>
 		<div class="row">
-			<button class="btn btn-lg btn-success mx-auto mt-2" id="dailySpinButton">+50 spins<sub><span id="dailySpinTimeRemaining"></span></sub></button>
+			<button class="btn btn-lg btn-success mx-auto mt-2" id="dailySpinButton">+20 spins<sub><span id="dailySpinTimeRemaining"></span></sub></button>
 		</div>
 		<!--<div class="row">
 			<div class="ml-auto mr-auto mt-5" id="allItems"></div>

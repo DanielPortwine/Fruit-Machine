@@ -60,7 +60,8 @@ $(document).ready(function(){
 			setTimeout(resetSpin,0);
 		}
 	}
-	$("#spinButton").click(function(){
+	//$("#spinButton").click(function(){
+	setInterval(function(){
 		// fetch the results
 		$.get("spin.php",function(data){
 			if (data[0] == '<'){
@@ -76,7 +77,7 @@ $(document).ready(function(){
 				spin();
 			}
 		});
-	});
+	},1);
 	// daily spin button countdown
 	$.get("dailySpinTime.php",function(data){
 		data = new Date(parseInt(data));
