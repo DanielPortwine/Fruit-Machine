@@ -83,7 +83,6 @@ $(document).ready(function(){
 		setInterval(function(){
 			var curTime = new Date();
 			var difference = new Date(data - curTime);
-			difference.setDate(difference.getDate() - 1);
 			if (difference > 0){
 				$("#dailySpinButton").attr("disabled",true);
 				var days = difference.getDate();
@@ -91,7 +90,7 @@ $(document).ready(function(){
 				var minutes = difference.getMinutes();
 				var seconds = difference.getSeconds();
 				var time = '';
-				if (days > 0){
+				if (days > 1){
 					hours += days * 24;
 				}
 				if (hours > 0){
