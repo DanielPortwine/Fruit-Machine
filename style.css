@@ -3,6 +3,9 @@ html, body{
 	margin:0px;
 	padding:0px;
 }
+p{
+	margin:0px;
+}
 button {
 	border:none;
 }
@@ -31,12 +34,10 @@ button {
 }
 #userLevel{
 	background-color:#222;
-	border-radius:5px 0px 0px 5px;
 }
 #userName{
 	background-color:#888;
 	color:#000;
-	border-radius:0px 5px 5px 0px;
 }
 #alertBox{
 	z-index:100;
