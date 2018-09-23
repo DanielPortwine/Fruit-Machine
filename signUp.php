@@ -26,6 +26,7 @@ if (!$taken) {
 	$conn->query("INSERT INTO users (username,email,news,pass,salt) VALUES ('{$_POST['username']}','{$_POST['email']}',{$consent},'{$password}','{$salt}');");
 	$_SESSION['alert'] = 'Account created';
 	$_SESSION['alert-type'] = 'success';
+	$_SESSION['username'] = $_POST['username'];
 	echo '<script>window.location = "play.php";</script>';
 }
 else {

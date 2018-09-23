@@ -55,13 +55,12 @@ $(document).ready(function(){
 				var itemNo = "#item" + i;
 				$(itemNo).attr("src","images/spinning.gif");
 				var item = items[itemsSpun[i-1]];
-				setTimeout(changeItem,i*0,i,item);
+				setTimeout(changeItem,i*2000,i,item);
 			}
-			setTimeout(resetSpin,0);
+			setTimeout(resetSpin,10000);
 		}
 	}
-	//$("#spinButton").click(function(){
-	setInterval(function(){
+	$("#spinButton").click(function(){
 		// fetch the results
 		$.get("spin.php",function(data){
 			if (data[0] == '<'){
@@ -77,7 +76,7 @@ $(document).ready(function(){
 				spin();
 			}
 		});
-	},1);
+	});
 	// daily spin button countdown
 	$.get("dailySpinTime.php",function(data){
 		data = new Date(parseInt(data));
@@ -115,6 +114,6 @@ $(document).ready(function(){
 		});
 	});
 	$.get("spinsLeft.php",function(data){
-		$("#spinsLeft").text(data);
+		$("#spinsLeft").text(parseInt(data)+1);
 	});
 });

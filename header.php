@@ -35,7 +35,7 @@ if (isset($_SESSION['alert'])) {
 			<li><a class="nav-item nav-link" id="playNav" href="play.php">Play</a></li>
 			<li><a class="nav-item nav-link" id="leaderboardNav" href="leaderboard.php">Leaderboard</a></li>
 			<li><a class="nav-item nav-link" id="statsNav" href="stats.php">Stats</a></li>
-			<li><a class="nav-item nav-link" id="editNav" href="edit.php">Edit</a></li>
+			<!--<li><a class="nav-item nav-link" id="editNav" href="edit.php">Edit</a></li>-->
 		</ul>
 		<?php
 		if (isset($_SESSION['username'])) {
