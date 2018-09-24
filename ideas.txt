@@ -32,32 +32,15 @@ raspberry
 
 level 10+ new items:
 +1 spin
-
-level 20+ new items:
-+1 Beer (2x xp for 1 minute. 30 minute cooldown)
-+2 spins
-
-level 30+ new items:
 bomb (don't get anything from that spin)
-+5 spins
-
-level 40+ new items:
-+10 spins
-+2 Beers
 
 level 50+ new items:
-+20 spins
-+3 Beers
++1 Beer (2x xp for 1 minute. 30 minute cooldown)
++5 spins
 
 level 100+ new items:
 +50 spins
 +5 Beers
-
-level 500+ new items:
-+10 Beers
-
-level 1000+ new items:
-+100 Beers
 
 
 leaderboard:

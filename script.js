@@ -47,6 +47,9 @@ $(document).ready(function(){
 			$("#xpGainedContainer").show();
 			setTimeout(function(){$("#xpGainedContainer").fadeOut();},3000);
 		});
+		$.get("getLevel.php",function(data){
+			$("#userLevel").text(data);
+		});
 		canSpin = true;
 		$("#spinButton").attr("disabled",false);
 		itemsSpun = [];
