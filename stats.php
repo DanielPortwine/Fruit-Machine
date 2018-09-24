@@ -22,9 +22,10 @@ $email = $userData[2];
 	<div class="container text-center mb-5">
 		<h1><?php echo $_SESSION['username']; ?></h1>
 		<p><?php echo $email; ?></p>
+		<hr>
 		<div class="row">
-			<div class="col-sm px-0" style="border:solid 1px #000">
-				<div style="background-color:#090;height:100%;width:<?php echo 100 - ((floor(($xp+1000)/1000)*1000 - $xp)/10) ?>%;">
+			<div class="progress col-sm px-0 mx-1" style="border:solid 1px #000">
+				<div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width:<?php echo 100 - ((floor(($xp+1000)/1000)*1000 - $xp)/10) ?>%;">
 					<?php 
 					if ($xp < 10){
 						echo substr($xp,-1);
@@ -41,7 +42,6 @@ $email = $userData[2];
 			<h4 class="col-sm text-left"><?php echo $level; ?>
 			<span class="float-right"><?php echo $level + 1; ?></span></h4>
 		</div>
-		
 		<table class="table table-borderless">
 			<tr>
 				<td class="text-right p-1">Total spins:</td>

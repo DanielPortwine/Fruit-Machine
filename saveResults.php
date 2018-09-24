@@ -16,7 +16,7 @@ $fives = $userData[13];
 if ($spinsLeft > 0){
 	$spinsLeft--;
 }
-$xp++;
+$xp += 5;
 $spins++;
 
 $items = scandir('images/items');
