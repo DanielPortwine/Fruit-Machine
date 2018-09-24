@@ -42,6 +42,10 @@ $(document).ready(function(){
 	function resetSpin(){
 		$.post("saveResults.php", {
 			result: itemsSpun
+		},function(data){
+			$("#xpGained").text('+' + data + 'xp');
+			$("#xpGainedContainer").show();
+			setTimeout(function(){$("#xpGainedContainer").fadeOut();},3000);
 		});
 		canSpin = true;
 		$("#spinButton").attr("disabled",false);
@@ -105,6 +109,7 @@ $(document).ready(function(){
 				$("#dailySpinTimeRemaining").text(' (' + time + ')');
 			} else {
 				$("#dailySpinButton").attr("disabled",false);
+				$("#dailySpinTimeRemaining").text('');
 			}
 		},1000);
 	});

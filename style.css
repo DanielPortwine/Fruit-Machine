@@ -45,3 +45,8 @@ td{
 #alertBox{
 	z-index:100;
 }
+#xpGainedContainer{
+	position:fixed;
+	display:none;
+	z-index:100;
+}

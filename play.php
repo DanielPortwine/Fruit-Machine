@@ -6,6 +6,7 @@ if (empty($_SESSION['username'])) {
 	echo '<script>window.location = "index.php";</script>';
 }
 ?>
+<h3 class="text-center w-100 mt-5" id="xpGainedContainer"><span class="rounded alert-success p-3 mt-5" id="xpGained"></span></h3>
 <div class="vertical-center">
 	<div class="container text-center mb-5">
 		<div class="row">

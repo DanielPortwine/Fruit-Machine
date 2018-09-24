@@ -5,6 +5,7 @@ $result = $_POST['result'];
 $userData = mysqli_fetch_row($conn->query("SELECT * FROM users WHERE username = '{$_SESSION['username']}';"));
 $spinsLeft = $userData[7];
 $xp = $userData[9];
+$originalXP = $xp;
 $spins = $userData[12];
 $nothings = $userData[17];
 $twos = $userData[16];
@@ -57,6 +58,8 @@ foreach ($itemsCount as $count){
 if (!$patternFound){
 	$nothings++;
 }
+$gainedXP = $xp - $originalXP;
+echo $gainedXP;
 $xpLevel = floor($xp/1000);
 $conn->query("UPDATE users SET xp={$xp},xpLevel={$xpLevel},spins={$spins},spinsLeft={$spinsLeft},nothings={$nothings},twos={$twos},threes={$threes},fours={$fours},fives={$fives} WHERE username = '{$_SESSION['username']}';");
 ?>
