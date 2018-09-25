@@ -25,6 +25,15 @@ $(document).ready(function(){
 	$("#logoutButton").click(function(){
 		window.location = 'logout.php';
 	});
+	// get item names
+	var items = [];
+	$.get("findItems.php",function(data){
+		items = data.split(',');
+		items[items.length-1] = items[items.length-1].substring(0,items[items.length-1].length-1);
+		for (i=0;i<items.length;i++){
+			console.log(items[i]+',');
+		}
+	});
 	var canSpin = true;
 	var itemsSpun = []
 	// set the item from spinning.gif to the generated item
