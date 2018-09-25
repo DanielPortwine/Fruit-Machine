@@ -32,7 +32,7 @@ $email = $userData[2];
 					} else if ($xp < 100) {
 						echo substr($xp,-2,2);
 					} else {
-						echo substr($xp,-3,3);
+						echo intval(substr($xp,-3,3));
 					}
 					?>/1000
 				</div>
@@ -48,15 +48,15 @@ $email = $userData[2];
 				<td class="text-left p-1"><?php echo $spins; ?></p>
 			</tr>
 			<tr>
-				<td class="text-right p-1">Five of a kind:</td>
+				<td class="text-right p-1">Quintuples:</td>
 				<td class="text-left p-1"><?php echo $fives; ?></p>
 			</tr>
 			<tr>
-				<td class="text-right p-1">Four of a kind:</td>
+				<td class="text-right p-1">Quadruples:</td>
 				<td class="text-left p-1"><?php echo $fours; ?></p>
 			</tr>
 			<tr>
-				<td class="text-right p-1">Three of a kind:</td>
+				<td class="text-right p-1">Triples:</td>
 				<td class="text-left p-1"><?php echo $threes; ?></p>
 			</tr>
 			<tr>
@@ -64,7 +64,7 @@ $email = $userData[2];
 				<td class="text-left p-1"><?php echo $twos; ?></p>
 			</tr>
 			<tr>
-				<td class="text-right p-1">Singles:</td>
+				<td class="text-right p-1">No matches:</td>
 				<td class="text-left p-1"><?php echo $nothings; ?></p>
 			</tr>
 			<tr>
