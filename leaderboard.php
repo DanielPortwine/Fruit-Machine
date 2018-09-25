@@ -22,7 +22,7 @@ if (isset($_SESSION['username'])){
 		<div class="row">
 			<div class="col-sm"></div>
 			<div class="col-sm bg-warning rounded my-1 py-2 px-3 mx-1">
-				<p class="float-left"><span class="bg-primary my-1 mr-2 px-2 py-1 rounded"><?php if (isset($_SESSION['username'])){ echo $user; } else { echo '1';} ?></span><span class="text-light my-1 px-2 py-1 rounded-left" style="background-color:#222"><?php echo $data[$user][2]; ?></span><span class="py-1 my-1 px-3 rounded-right" style="background-color:#888"><?php echo $data[$user][0]; ?></span></p>
+				<p class="float-left"><span class="bg-primary my-1 mr-2 px-2 py-1 rounded"><?php if (isset($_SESSION['username'])){ echo $user+1; } else { echo '1';} ?></span><span class="text-light my-1 px-2 py-1 rounded-left" style="background-color:#222"><?php echo $data[$user][2]; ?></span><span class="py-1 my-1 px-3 rounded-right" style="background-color:#888"><?php echo $data[$user][0]; ?></span></p>
 				<p class="float-right rounded bg-success px-2"><?php echo $data[$user][1]; ?></p>
 			</div>
 			<div class="col-sm"></div>

@@ -36,6 +36,14 @@ if (isset($_SESSION['alert'])) {
 			<li><a class="nav-item nav-link" id="playNav" href="play.php">Play</a></li>
 			<li><a class="nav-item nav-link" id="statsNav" href="stats.php">Stats</a></li>
 			<li><a class="nav-item nav-link" id="leaderboardNav" href="leaderboard.php">Leaderboard</a></li>
+			<?php
+			// show admin nav item if user is Dan
+			if (isset($_SESSION['username'])){
+				if ($_SESSION['username'] == 'Dan'){
+					echo '<li><a class="nav-item nav-link" id="adminNav" href="admin.php">Admin</a></li>';
+				}
+			}
+			?>
 		</ul>
 		<?php
 		// if user is logged in display their level and username as well as logout button
