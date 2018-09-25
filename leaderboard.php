@@ -1,17 +1,21 @@
 <?php
 require_once('header.php');
 $_SESSION['page'] = 'leaderboard';
+// set navbar element for this page to active
 echo '<script>$("#' . $_SESSION['page'] . 'Nav").addClass("active");</script>';
+// fetch all records and order by xp in descending order
 $dataXp = $conn->query("SELECT username, xp, xplevel, points FROM users ORDER BY xp DESC")->fetch_all();
-$dataPoints = $conn->query("SELECT username, xp, xplevel, points FROM users ORDER BY points DESC")->fetch_all();
+// fin dthe number of records
 $count = sizeOf($dataXp);
 ?>
 <div class="container text-center my-5">
 	<?php
+	// display the user data for every user
 	for ($i=1;$i<=$count;$i++){
 		echo '<div class="row">
 				<div class="col-sm"></div>
 				<div class="col-sm '; 
+					// show the logged in user's entry as yellow but all others as grey
 					if ($dataXp[$i-1][0] == $_SESSION['username']){
 						echo 'bg-warning';
 					} else {

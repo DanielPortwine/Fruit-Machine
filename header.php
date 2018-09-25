@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('connection.php');
+// display an alert
 if (isset($_SESSION['alert'])) {
 	echo '<div class="alert alert-' . $_SESSION['alert-type'] . ' alert-dismissable fade show" id="alertBox">
 			' . $_SESSION['alert'] . '
@@ -35,9 +36,9 @@ if (isset($_SESSION['alert'])) {
 			<li><a class="nav-item nav-link" id="playNav" href="play.php">Play</a></li>
 			<li><a class="nav-item nav-link" id="statsNav" href="stats.php">Stats</a></li>
 			<li><a class="nav-item nav-link" id="leaderboardNav" href="leaderboard.php">Leaderboard</a></li>
-			<!--<li><a class="nav-item nav-link" id="editNav" href="edit.php">Edit</a></li>-->
 		</ul>
 		<?php
+		// if user is logged in display their level and username as well as logout button
 		if (isset($_SESSION['username'])) {
 			echo '<span class="navbar-text mr-3"><span class="px-2 py-1 rounded-left" id="userLevel">' . mysqli_fetch_row($conn->query("SELECT xplevel FROM users WHERE username = '{$_SESSION['username']}';"))[0] . '</span><span class="px-3 py-1 rounded-right" id="userName">' . $_SESSION['username'] . '</span></span>
 				<button class="btn btn-danger" id="logoutButton">Logout</button>

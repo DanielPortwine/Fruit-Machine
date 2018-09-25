@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	// fade alerts after 5 seconds
 	function fadeAlert(){
 		$("#alertBox").fadeOut();
 	}
@@ -24,21 +25,14 @@ $(document).ready(function(){
 	$("#logoutButton").click(function(){
 		window.location = 'logout.php';
 	});
-	var items = [];
-	$.get("findItems.php",function(data){
-		items = data.split(',');
-		var allItems = "";
-		for (i=0;i<items.length;i++){
-			allItems += '<img src="images/items/' + items[i] + '.png">';
-		}
-		$("#allItems").html(allItems);
-	});
 	var canSpin = true;
 	var itemsSpun = []
+	// set the item from spinning.gif to the generated item
 	function changeItem(itemNo,item){
 		itemNo = "#item" + itemNo;
 		$(itemNo).attr("src","images/items/"+item+".png");
 	}
+	// save result of spin, display xp gained from spin, refresh user level re-enable spin button
 	function resetSpin(){
 		$.post("saveResults.php", {
 			result: itemsSpun
@@ -54,6 +48,7 @@ $(document).ready(function(){
 		$("#spinButton").attr("disabled",false);
 		itemsSpun = [];
 	}
+	// disable spin button set each item to spinning.gif, call to display item every 2 seconds
 	function spin(){
 		if (canSpin == true){
 			canSpin = false;
@@ -67,8 +62,8 @@ $(document).ready(function(){
 			setTimeout(resetSpin,10000);
 		}
 	}
+	// get result of spin, if out of spins refresh page to show alert, update spins left, call spin to display result
 	$("#spinButton").click(function(){
-		// fetch the results
 		$.get("spin.php",function(data){
 			if (data[0] == '<'){
 				$('head').html(data);
@@ -97,6 +92,7 @@ $(document).ready(function(){
 				var minutes = difference.getMinutes();
 				var seconds = difference.getSeconds();
 				var time = '';
+				// displays the most relevant time scale
 				if (days > 1){
 					hours += days * 24;
 				}
@@ -116,11 +112,13 @@ $(document).ready(function(){
 			}
 		},1000);
 	});
+	// collect bonus spins
 	$("#dailySpinButton").click(function(){
 		$.post("getDailySpins.php",function(data){
 			$('head').html(data);
 		});
 	});
+	// get no. spins left
 	$.get("spinsLeft.php",function(data){
 		$("#spinsLeft").text(parseInt(data)+1);
 	});

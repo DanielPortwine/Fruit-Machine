@@ -1,11 +1,15 @@
 <?php
 require_once('header.php');
 $_SESSION['page'] = 'stats';
+// set navbar element for this page to active
 echo '<script>$("#' . $_SESSION['page'] . 'Nav").addClass("active");</script>';
+// if user is not logged in redirect to login page
 if (empty($_SESSION['username'])) {
 	echo '<script>window.location = "index.php";</script>';
 }
+// fetch data from logged in user's record
 $userData = mysqli_fetch_row($conn->query("SELECT * FROM users WHERE username = '{$_SESSION['username']}';"));
+// assign more relevant variable names for user's data
 $spinsLeft = $userData[7];
 $xp = $userData[9];
 $level = $userData[10];
@@ -24,6 +28,7 @@ $email = $userData[2];
 		<p><?php echo $email; ?></p>
 		<hr>
 		<div class="row">
+			<!-- progress bar showing how far they are from the next level -->
 			<div class="progress col-sm px-0 mx-1" style="border:solid 1px #000">
 				<div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width:<?php echo 100 - ((floor(($xp+1000)/1000)*1000 - $xp)/10) ?>%;">
 					<?php 

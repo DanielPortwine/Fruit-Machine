@@ -1,6 +1,7 @@
 <?php
 require_once('header.php');
 $_SESSION['page'] = 'index';
+// if user is logged in redirect to play page
 if (isset($_SESSION['username'])) {
 	echo '<script>window.location = "play.php";</script>';
 }
