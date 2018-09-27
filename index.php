@@ -12,7 +12,7 @@ if (isset($_SESSION['username'])) {
 		<!-- Login form -->
 		<form action="login.php" method="post" id="loginForm">
 			<div class="form-group">
-				<input type="text" class="form-control" name="username" placeholder="Username" required>
+				<input type="text" class="form-control" name="username" placeholder="Username" required autofocus>
 			</div>
 			<div class="form-group">
 				<input type="password" class="form-control" name="password" placeholder="Password" required>

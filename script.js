@@ -30,9 +30,6 @@ $(document).ready(function(){
 	$.get("findItems.php",function(data){
 		items = data.split(',');
 		items[items.length-1] = items[items.length-1].substring(0,items[items.length-1].length-1);
-		for (i=0;i<items.length;i++){
-			console.log(items[i]+',');
-		}
 	});
 	var canSpin = true;
 	var itemsSpun = []
@@ -66,9 +63,12 @@ $(document).ready(function(){
 				var itemNo = "#item" + i;
 				$(itemNo).attr("src","images/spinning.gif");
 				var item = items[itemsSpun[i-1]];
-				setTimeout(changeItem,i*2000,i,item);
+				//changeItem(i,item);
+				setTimeout(changeItem,(i*4000)+(250*((i-1)*(i-1))),i,item);
+				console.log((i*4000)+(250*((i-1)*(i-1))));
 			}
-			setTimeout(resetSpin,10000);
+			//resetSpin();
+			setTimeout(resetSpin,24000);
 		}
 	}
 	// get result of spin, if out of spins refresh page to show alert, update spins left, call spin to display result
@@ -128,7 +128,25 @@ $(document).ready(function(){
 		});
 	});
 	// get no. spins left
-	$.get("spinsLeft.php",function(data){
-		$("#spinsLeft").text(parseInt(data)+1);
+	function showSpins(){
+		$.get("spinsLeft.php",function(data){
+			$("#spinsLeft").text(parseInt(data)+1);
+		});
+	}
+	showSpins();
+	
+	// ---   admin controls   ---
+	
+	// admin rigged spin
+	$("#spinButtonRigged").click(function(){
+		for (i=1;i<=5;i++){
+			itemsSpun.push($("#rItem"+i).val());
+		}
+		spin();
+	});
+	// admin give 20 spins
+	$("#adminSpins").click(function(){
+		$.get("adminSpins.php");
+		setTimeout(showSpins,10);
 	});
 });

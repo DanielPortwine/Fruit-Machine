@@ -28,6 +28,9 @@ td{
 	display:flex;
 	align-items:center;
 }
+.itemEntry{
+	width:40px;
+}
 #signUpForm {
 	display:none;
 }

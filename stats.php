@@ -11,14 +11,15 @@ if (empty($_SESSION['username'])) {
 $userData = mysqli_fetch_row($conn->query("SELECT * FROM users WHERE username = '{$_SESSION['username']}';"));
 // assign more relevant variable names for user's data
 $spinsLeft = $userData[7];
-$xp = $userData[9];
-$level = $userData[10];
-$spins = $userData[12];
-$nothings = $userData[17];
-$twos = $userData[16];
-$threes = $userData[15];
-$fours = $userData[14];
-$fives = $userData[13];
+$score = $userData[9];
+$xp = $userData[10];
+$level = $userData[11];
+$spins = $userData[13];
+$nothings = $userData[18];
+$twos = $userData[17];
+$threes = $userData[16];
+$fours = $userData[15];
+$fives = $userData[14];
 $dateJoined = strtotime($userData[6]);
 $email = $userData[2];
 ?>
@@ -51,6 +52,14 @@ $email = $userData[2];
 			<tr>
 				<td class="text-right p-1">Total spins:</td>
 				<td class="text-left p-1"><?php echo $spins; ?></p>
+			</tr>
+			<tr>
+				<td class="text-right p-1">Total XP:</td>
+				<td class="text-left p-1"><?php echo $xp; ?></p>
+			</tr>
+			<tr>
+				<td class="text-right p-1">Score:</td>
+				<td class="text-left p-1"><?php echo $score ?></p>
 			</tr>
 			<tr>
 				<td class="text-right p-1">Quintuples:</td>

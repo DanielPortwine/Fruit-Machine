@@ -19,13 +19,13 @@ $data = [];
 for ($i=1;$i<$totalUsers+1;$i++){
 	$row = mysqli_fetch_row($conn->query("SELECT * FROM users WHERE userID = {$i}"));
 	array_push($data,$row);
-	$spinsTotal += $row[12];
-	$xpTotal += $row[9];
-	$fivesTotal += $row[13];
-	$foursTotal += $row[14];
-	$threesTotal += $row[15];
-	$twosTotal += $row[16];
-	$nothingsTotal += $row[17];
+	$spinsTotal += $row[13];
+	$xpTotal += $row[10];
+	$fivesTotal += $row[14];
+	$foursTotal += $row[15];
+	$threesTotal += $row[16];
+	$twosTotal += $row[17];
+	$nothingsTotal += $row[18];
 }
 $spinsAvg = round($spinsTotal / $totalUsers,2);
 $xpAvg = round($xpTotal / $totalUsers,2);

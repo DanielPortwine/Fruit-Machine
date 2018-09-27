@@ -55,3 +55,33 @@ if (isset($_SESSION['alert'])) {
 		?>
 	</div>
 </nav>
+<?php
+if (isset($_SESSION['username']) && isset($_SESSION['page'])){
+	if ($_SESSION['username'] == 'Dan' && $_SESSION['page'] == 'play'){
+		echo '
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
+			<span class="navbar-brand">Admin controls</span>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent1" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarContent1">
+				<ul class="navbar-nav mr-auto">
+					<!-- play -->
+					<li><button class="nav-item btn btn-success m-1" id="adminSpins">+20 Spins</button></li>
+					<li><button class="nav-item btn btn-success m-1 disabled" id="adminBeers">+10 Beers</button></li>
+					<li>
+						<form class=" m-1">
+							<input class="itemEntry" id="rItem1" type="number" min="0" max="13">
+							<input class="itemEntry" id="rItem2" type="number" min="0" max="13">
+							<input class="itemEntry" id="rItem3" type="number" min="0" max="13">
+							<input class="itemEntry" id="rItem4" type="number" min="0" max="13">
+							<input class="itemEntry" id="rItem5" type="number" min="0" max="13">
+							<input class="btn btn-success" type="button" id="spinButtonRigged" value="SPIN">
+						</form>
+					</li>
+				</ul>
+			</div>
+		</nav>';
+	}
+}
+?>

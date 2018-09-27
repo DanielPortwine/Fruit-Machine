@@ -6,20 +6,18 @@ $result = $_POST['result'];
 // fetch all data for logged in user
 $userData = mysqli_fetch_row($conn->query("SELECT * FROM users WHERE username = '{$_SESSION['username']}';"));
 $spinsLeft = $userData[7];
-$xp = $userData[9];
+$xp = $userData[10];
 $originalXP = $xp;
-$spins = $userData[12];
-$nothings = $userData[17];
-$twos = $userData[16];
-$threes = $userData[15];
-$fours = $userData[14];
-$fives = $userData[13];
+$spins = $userData[13];
+$nothings = $userData[18];
+$twos = $userData[17];
+$threes = $userData[16];
+$fours = $userData[15];
+$fives = $userData[14];
 // if the user has spins decrement them
 if ($spinsLeft > 0){
 	$spinsLeft--;
 }
-// add 5 xp for spinning
-$xp += 5;
 // increment total spins
 $spins++;
 // scan items directory of item images
@@ -54,24 +52,28 @@ foreach ($itemsCount as $count){
 		$patternFound = true;
 	} else if ($count == 4){
 		$fours++;
-		$xp += 100;
+		$xp += 250;
 		$patternFound = true;
 		break;
 	} else if ($count == 5){
 		$fives++;
-		$xp += 500;
+		$xp += 10000;
 		$patternFound = true;
 		break;
 	}
 }
 if (!$patternFound){
 	$nothings++;
+	$xp += 5;
 }
 // calculate xp gained in this spin
 $gainedXP = $xp - $originalXP;
 echo $gainedXP;
+$xp++;
 // calculate user's level
 $xpLevel = floor($xp/1000);
+// calculate user's  score
+$score = floor(($xp / $spins) + floor($xpLevel * 0.3));
 // update user's record
-$conn->query("UPDATE users SET xp={$xp},xpLevel={$xpLevel},spins={$spins},spinsLeft={$spinsLeft},nothings={$nothings},twos={$twos},threes={$threes},fours={$fours},fives={$fives} WHERE username = '{$_SESSION['username']}';");
+$conn->query("UPDATE users SET score={$score},xp={$xp},xpLevel={$xpLevel},spins={$spins},spinsLeft={$spinsLeft},nothings={$nothings},twos={$twos},threes={$threes},fours={$fours},fives={$fives} WHERE username = '{$_SESSION['username']}';");
 ?>
