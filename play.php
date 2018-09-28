@@ -15,28 +15,32 @@ if (empty($_SESSION['username'])) {
 		<!-- items row -->
 		<div class="row">
 			<div class="col-sm">
-				<img class="itemImage" id="item1" src="images/begin.png">
+				<img class="itemImage m-1" id="item1" src="images/begin.png">
 			</div>
 			<div class="col-sm">
-				<img class="itemImage" id="item2" src="images/begin.png">
+				<img class="itemImage m-1" id="item2" src="images/begin.png">
 			</div>
 			<div class="col-sm">
-				<img class="itemImage" id="item3" src="images/begin.png">
+				<img class="itemImage m-1" id="item3" src="images/begin.png">
 			</div>
 			<div class="col-sm">
-				<img class="itemImage" id="item4" src="images/begin.png">
+				<img class="itemImage m-1" id="item4" src="images/begin.png">
 			</div>
 			<div class="col-sm">
-				<img class="itemImage" id="item5" src="images/begin.png">
+				<img class="itemImage m-1" id="item5" src="images/begin.png">
 			</div>
 		</div>
 		<!-- How many spins left -->
 		<div class="row">
-			<p class="col-sm my-2">Spins remaining: <span id="spinsLeft"></span></p>
+			<p class="col-sm my-2">Spins remaining: <span id="spinsLeft"></span> | Beer remaining: <span id="beersLeft"></span> | Beer spins left: <span id="beerSpinsLeft"></span></p>
 		</div>
 		<!-- spin button -->
 		<div class="row">
-			<button class="btn btn-lg btn-success mx-auto mt-2" id="spinButton">SPIN</button>
+			<button class="btn btn-lg btn-success mx-auto p-3 px-4" id="spinButton"><i class="fa fa-rotate-right" style="font-size:50px;"></i></button>
+		</div>
+		<!-- Beer button -->
+		<div class="row">
+			<button class="btn btn-lg btn-success mx-auto mt-2" id="beerButton"><img src="images/items/gulhhess.png"></img></button>
 		</div>
 		<!-- extra spins button -->
 		<div class="row">

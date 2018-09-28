@@ -10,6 +10,8 @@ if (empty($_SESSION['username']) || $_SESSION['username'] != 'Dan') {
 $totalUsers = mysqli_num_rows($conn->query("SELECT userID FROM users"));
 $spinsTotal = 0;
 $xpTotal = 0;
+$scoreTotal = 0;
+$beersTotal = 0;
 $fivesTotal = 0;
 $foursTotal = 0;
 $threesTotal = 0;
@@ -17,18 +19,22 @@ $twosTotal = 0;
 $nothingsTotal = 0;
 $data = [];
 for ($i=1;$i<$totalUsers+1;$i++){
-	$row = mysqli_fetch_row($conn->query("SELECT * FROM users WHERE userID = {$i}"));
+	$row = mysqli_fetch_row($conn->query("SELECT spins,xp,score,beersUsed,fives,fours,threes,twos,nothings FROM users WHERE userID = {$i}"));
 	array_push($data,$row);
-	$spinsTotal += $row[13];
-	$xpTotal += $row[10];
-	$fivesTotal += $row[14];
-	$foursTotal += $row[15];
-	$threesTotal += $row[16];
-	$twosTotal += $row[17];
-	$nothingsTotal += $row[18];
+	$spinsTotal += $row[0];
+	$xpTotal += $row[1];
+	$scoreTotal += $row[2];
+	$beersTotal += $row[3];
+	$fivesTotal += $row[4];
+	$foursTotal += $row[5];
+	$threesTotal += $row[6];
+	$twosTotal += $row[7];
+	$nothingsTotal += $row[8];
 }
 $spinsAvg = round($spinsTotal / $totalUsers,2);
 $xpAvg = round($xpTotal / $totalUsers,2);
+$scoreAvg = round($scoreTotal / $totalUsers,2);
+$beerAvg = round($beersTotal / $totalUsers,2);
 $fivesAvg = round($fivesTotal / $totalUsers,2);
 $foursAvg = round($foursTotal / $totalUsers,2);
 $threesAvg = round($threesTotal / $totalUsers,2);
@@ -57,12 +63,30 @@ $countYoung = sizeOf($youngest);
 			</tr>
 			<tr><td></td></tr>
 			<tr>
+				<td class="text-right p-1">Total score:</td>
+				<td class="text-left p-1"><?php echo $scoreTotal; ?></p>
+			</tr>
+			<tr>
+				<td class="text-right p-1">Average score:</td>
+				<td class="text-left p-1"><?php echo $scoreAvg; ?></p>
+			</tr>
+			<tr><td></td></tr>
+			<tr>
 				<td class="text-right p-1">Total xp:</td>
 				<td class="text-left p-1"><?php echo $xpTotal; ?></p>
 			</tr>
 			<tr>
 				<td class="text-right p-1">Average xp:</td>
 				<td class="text-left p-1"><?php echo $xpAvg; ?></p>
+			</tr>
+			<tr><td></td></tr>
+			<tr>
+				<td class="text-right p-1">Total beer used:</td>
+				<td class="text-left p-1"><?php echo $beersTotal; ?></p>
+			</tr>
+			<tr>
+				<td class="text-right p-1">Average beer used:</td>
+				<td class="text-left p-1"><?php echo $beerAvg; ?></p>
 			</tr>
 			<tr><td></td></tr>
 			<tr>

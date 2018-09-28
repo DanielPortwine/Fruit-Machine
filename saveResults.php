@@ -4,16 +4,18 @@ require_once('connection.php');
 // assign result to more relevant variable name
 $result = $_POST['result'];
 // fetch all data for logged in user
-$userData = mysqli_fetch_row($conn->query("SELECT * FROM users WHERE username = '{$_SESSION['username']}';"));
-$spinsLeft = $userData[7];
-$xp = $userData[10];
+$userData = mysqli_fetch_row($conn->query("SELECT spinsLeft,xp,beers,beerSpinsLeft,spins,fives,fours,threes,twos,nothings FROM users WHERE username = '{$_SESSION['username']}';"));
+$spinsLeft = $userData[0];
+$xp = $userData[1];
 $originalXP = $xp;
-$spins = $userData[13];
-$nothings = $userData[18];
-$twos = $userData[17];
-$threes = $userData[16];
-$fours = $userData[15];
-$fives = $userData[14];
+$beers = $userData[2];
+$beerSpinsLeft = $userData[3];
+$spins = $userData[4];
+$nothings = $userData[9];
+$twos = $userData[8];
+$threes = $userData[7];
+$fours = $userData[6];
+$fives = $userData[5];
 // if the user has spins decrement them
 if ($spinsLeft > 0){
 	$spinsLeft--;
@@ -25,7 +27,7 @@ $items = scandir('images/items');
 // remove '.' and '..' elements from array
 unset($items[0]);
 unset($items[1]);
-// initialise an array as large as the number of items with eac hvalue at 0
+// initialise an array as large as the number of items with each value at 0
 $itemsCount = [];
 foreach ($items as $item){
 	array_push($itemsCount,0);
@@ -39,6 +41,8 @@ for ($i=0;$i<=sizeOf($items);$i++){
 		}
 	}
 }
+// find how many Beers were spun
+$beers += $itemsCount[6];
 // detect whether any matches have been generated
 $patternFound = false;
 foreach ($itemsCount as $count){
@@ -57,7 +61,7 @@ foreach ($itemsCount as $count){
 		break;
 	} else if ($count == 5){
 		$fives++;
-		$xp += 10000;
+		$xp += 5000;
 		$patternFound = true;
 		break;
 	}
@@ -68,6 +72,12 @@ if (!$patternFound){
 }
 // calculate xp gained in this spin
 $gainedXP = $xp - $originalXP;
+// account for Beer xp bonus
+if ($beerSpinsLeft > 0){
+	$gainedXP *= 2;
+	$xp += $gainedXP;
+	$beerSpinsLeft--;
+}
 echo $gainedXP;
 $xp++;
 // calculate user's level
@@ -75,5 +85,5 @@ $xpLevel = floor($xp/1000);
 // calculate user's  score
 $score = floor(($xp / $spins) + floor($xpLevel * 0.3));
 // update user's record
-$conn->query("UPDATE users SET score={$score},xp={$xp},xpLevel={$xpLevel},spins={$spins},spinsLeft={$spinsLeft},nothings={$nothings},twos={$twos},threes={$threes},fours={$fours},fives={$fives} WHERE username = '{$_SESSION['username']}';");
+$conn->query("UPDATE users SET score={$score},xp={$xp},xpLevel={$xpLevel},beers={$beers},beerSpinsLeft={$beerSpinsLeft},spins={$spins},spinsLeft={$spinsLeft},nothings={$nothings},twos={$twos},threes={$threes},fours={$fours},fives={$fives} WHERE username = '{$_SESSION['username']}';");
 ?>

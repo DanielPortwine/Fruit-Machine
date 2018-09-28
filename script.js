@@ -21,6 +21,11 @@ $(document).ready(function(){
 	});
 	// displays alerts
 	$('.alert').alert();
+	// initialise tooltips
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip()
+	})
+	$('[data-toggle="tooltip"]').tooltip({'delay': { show: 1000, hide: 0 }});
 	// logout
 	$("#logoutButton").click(function(){
 		window.location = 'logout.php';
@@ -53,6 +58,7 @@ $(document).ready(function(){
 		canSpin = true;
 		$("#spinButton").attr("disabled",false);
 		itemsSpun = [];
+		setTimeout(showSpins,10);
 	}
 	// disable spin button set each item to spinning.gif, call to display item every 2 seconds
 	function spin(){
@@ -64,11 +70,11 @@ $(document).ready(function(){
 				$(itemNo).attr("src","images/spinning.gif");
 				var item = items[itemsSpun[i-1]];
 				//changeItem(i,item);
-				setTimeout(changeItem,(i*4000)+(250*((i-1)*(i-1))),i,item);
-				console.log((i*4000)+(250*((i-1)*(i-1))));
+				setTimeout(changeItem,(i*1000)+(100*((i-1)*(i-1))),i,item);
+				console.log((i*1000)+(100*((i-1)*(i-1))));
 			}
 			//resetSpin();
-			setTimeout(resetSpin,24000);
+			setTimeout(resetSpin,6600);
 		}
 	}
 	// get result of spin, if out of spins refresh page to show alert, update spins left, call spin to display result
@@ -77,9 +83,7 @@ $(document).ready(function(){
 			if (data[0] == '<'){
 				$('head').html(data);
 			} else {
-				$.get("spinsLeft.php",function(data){
-					$("#spinsLeft").text(data);
-				});
+				setTimeout(showSpins,10);
 				var strArr = data.split(',');
 				for(i=0;i<strArr.length;i++){
 					itemsSpun.push(parseInt(strArr[i]));
@@ -111,7 +115,7 @@ $(document).ready(function(){
 				if (minutes > 0 && hours == 0){
 					time += minutes + 'm';
 				}
-				if (seconds > 0 && minutes == 0){
+				if (seconds > 0 && minutes == 0 && hours == 0){
 					time += seconds + 's';
 				}
 				$("#dailySpinTimeRemaining").text(' (' + time + ')');
@@ -129,11 +133,25 @@ $(document).ready(function(){
 	});
 	// get no. spins left
 	function showSpins(){
+		var spinData = [];
 		$.get("spinsLeft.php",function(data){
-			$("#spinsLeft").text(parseInt(data)+1);
+			var strArr = data.split(',');
+			for(i=0;i<strArr.length;i++){
+				spinData.push(parseInt(strArr[i]));
+			}
+			$("#spinsLeft").text(spinData[0]);
+			$("#beersLeft").text(spinData[1]);
+			$("#beerSpinsLeft").text(spinData[2]);
 		});
 	}
 	showSpins();
+	// use a Beer
+	$("#beerButton").click(function(){
+		$.get("useBeer.php",function(data){
+			// alert
+		});
+		setTimeout(showSpins,10);
+	});
 	
 	// ---   admin controls   ---
 	
@@ -147,6 +165,11 @@ $(document).ready(function(){
 	// admin give 20 spins
 	$("#adminSpins").click(function(){
 		$.get("adminSpins.php");
+		setTimeout(showSpins,10);
+	});
+	// admin give 10 beersLeft
+	$("#adminBeers").click(function(){
+		$.get("adminBeers.php");
 		setTimeout(showSpins,10);
 	});
 });

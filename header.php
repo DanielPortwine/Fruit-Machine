@@ -16,11 +16,13 @@ if (isset($_SESSION['alert'])) {
 <html>
 <head>
 	<title>Fruit machine</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="icon" href="images/begin.png">
+	<link rel="icon" href="images/items/gulhhess.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="script.js"></script>
@@ -68,7 +70,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['page'])){
 				<ul class="navbar-nav mr-auto">
 					<!-- play -->
 					<li><button class="nav-item btn btn-success m-1" id="adminSpins">+20 Spins</button></li>
-					<li><button class="nav-item btn btn-success m-1 disabled" id="adminBeers">+10 Beers</button></li>
+					<li><button class="nav-item btn btn-success m-1" id="adminBeers">+10 Beers</button></li>
 					<li>
 						<form class=" m-1">
 							<input class="itemEntry" id="rItem1" type="number" min="0" max="13">

@@ -8,20 +8,23 @@ if (empty($_SESSION['username'])) {
 	echo '<script>window.location = "index.php";</script>';
 }
 // fetch data from logged in user's record
-$userData = mysqli_fetch_row($conn->query("SELECT * FROM users WHERE username = '{$_SESSION['username']}';"));
+$userData = mysqli_fetch_row($conn->query("SELECT spinsLeft,score,xp,xpLevel,beers,beerSpinsLeft,beersUsed,spins,fives,fours,threes,twos,nothings,dateCreated,email FROM users WHERE username = '{$_SESSION['username']}';"));
 // assign more relevant variable names for user's data
-$spinsLeft = $userData[7];
-$score = $userData[9];
-$xp = $userData[10];
-$level = $userData[11];
-$spins = $userData[13];
-$nothings = $userData[18];
-$twos = $userData[17];
-$threes = $userData[16];
-$fours = $userData[15];
-$fives = $userData[14];
-$dateJoined = strtotime($userData[6]);
-$email = $userData[2];
+$spinsLeft = $userData[0];
+$score = $userData[1];
+$xp = $userData[2];
+$level = $userData[3];
+$beersCurrent = $userData[4];
+$beerSpinsLeft = $userData[5];
+$beersTotal = $userData[6];
+$spins = $userData[7];
+$nothings = $userData[12];
+$twos = $userData[11];
+$threes = $userData[10];
+$fours = $userData[9];
+$fives = $userData[8];
+$dateJoined = strtotime($userData[13]);
+$email = $userData[14];
 ?>
 <div class="vertical-center">
 	<div class="container text-center mb-5">
@@ -60,6 +63,18 @@ $email = $userData[2];
 			<tr>
 				<td class="text-right p-1">Score:</td>
 				<td class="text-left p-1"><?php echo $score ?></p>
+			</tr>
+			<tr>
+				<td class="text-right p-1">Current beer:</td>
+				<td class="text-left p-1"><?php echo $beersCurrent ?></p>
+			</tr>
+			<tr>
+				<td class="text-right p-1">Spins left with beer bonus:</td>
+				<td class="text-left p-1"><?php echo $beerSpinsLeft ?></p>
+			</tr>
+			<tr>
+				<td class="text-right p-1">Total beer used:</td>
+				<td class="text-left p-1"><?php echo $beersTotal ?></p>
 			</tr>
 			<tr>
 				<td class="text-right p-1">Quintuples:</td>
