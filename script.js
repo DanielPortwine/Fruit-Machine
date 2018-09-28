@@ -26,6 +26,12 @@ $(document).ready(function(){
 		$('[data-toggle="tooltip"]').tooltip()
 	})
 	$('[data-toggle="tooltip"]').tooltip({'delay': { show: 1000, hide: 0 }});
+	// display alert without refresh
+	function showAlert(message,type){
+		var alert = '<div class="alert alert-' + type + ' alert-dismissable fade show" id="alertBox">' + message + '<button type="button" class="close ml-2" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+		$("body").append(alert);
+		setTimeout(fadeAlert,5000);
+	}
 	// logout
 	$("#logoutButton").click(function(){
 		window.location = 'logout.php';
@@ -80,8 +86,8 @@ $(document).ready(function(){
 	// get result of spin, if out of spins refresh page to show alert, update spins left, call spin to display result
 	$("#spinButton").click(function(){
 		$.get("spin.php",function(data){
-			if (data[0] == '<'){
-				$('head').html(data);
+			if (data[0] == '!'){
+				showAlert('No spins left!','danger');
 			} else {
 				setTimeout(showSpins,10);
 				var strArr = data.split(',');
@@ -128,7 +134,11 @@ $(document).ready(function(){
 	// collect bonus spins
 	$("#dailySpinButton").click(function(){
 		$.post("getDailySpins.php",function(data){
-			$('head').html(data);
+			if (data[0] == 'S'){
+				showAlert(data,'success');
+			} else if (data[0] == 'B'){
+				showAlert(data,'danger');
+			}
 		});
 	});
 	// get no. spins left

@@ -11,12 +11,8 @@ if ($dailySpinTime < $currentTime){
 	$spinsLeft += 20;
 	$dailySpinTime = date('Y-m-d H:i:s',strtotime($currentTime . '+6 hours'));
 	$conn->query("UPDATE users SET spinsLeft={$spinsLeft},dailySpinTime='{$dailySpinTime}' WHERE username = '{$_SESSION['username']}';");
-	$_SESSION['alert'] = 'Spins added!';
-	$_SESSION['alert-type'] = 'success';
-	echo '<script>window.location = "play.php";</script>';
+	echo 'Spins added!';
 } else {
-	$_SESSION['alert'] = 'Bonus spins not available!';
-	$_SESSION['alert-type'] = 'danger';
-	echo '<script>window.location = "play.php";</script>';
+	echo 'Bonus spins not available!';
 }
 ?>

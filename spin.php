@@ -13,8 +13,6 @@ if (mysqli_fetch_row($conn->query("SELECT spinsLeft FROM users WHERE username = 
 	}
 	echo mt_rand(0,sizeOf($items)-1);
 } else {
-	$_SESSION['alert'] = 'No spins left!';
-	$_SESSION['alert-type'] = 'danger';
-	echo '<script>window.location = "play.php";</script>';
+	echo '!';
 }
 ?>
