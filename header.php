@@ -28,9 +28,9 @@ if (isset($_SESSION['alert'])) {
 	<script src="script.js"></script>
 </head>
 <body>
-<div class="alert alert-danger alert-dismissable fade show">
+<!--<div class="alert alert-danger alert-dismissable fade show">
 	Site is currently being actively developed please come back later
-</div>
+</div>-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<a href="index.php" class="navbar-brand">Fruit Machine</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">

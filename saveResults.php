@@ -42,8 +42,6 @@ for ($i=0;$i<=sizeOf($items);$i++){
 		}
 	}
 }
-// find how many Beers were spun
-$beers += $itemsCount[7];
 // find out how many bombs were spun
 $bombsSpun = $itemsCount[4];
 if ($bombsSpun > 0){
@@ -52,6 +50,9 @@ if ($bombsSpun > 0){
 	// account for Beer xp bonus
 	if ($beerSpinsLeft > 0){
 		$beerSpinsLeft--;
+	}
+	if ($spins > $bombsSpun){
+		$spins -= $bombsSpun;
 	}
 	if ($bombsSpun == 1){
 		$beers = ceil($beers * 0.8);
@@ -65,6 +66,13 @@ if ($bombsSpun > 0){
 		$beers = 0;
 	}
 } else {
+	// extra spin items
+	$plusOnes = $itemsCount[13];
+	$plusFives = $itemsCount[14];
+	$plusTens = 0; //$itemsCount[12];
+	$spinsLeft += $plusOnes + ($plusFives * 5) + ($plusTens * 10);
+	// find how many Beers were spun
+	$beers += $itemsCount[7];
 	// detect whether any matches have been generated
 	$patternFound = false;
 	foreach ($itemsCount as $count){

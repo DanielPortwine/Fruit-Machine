@@ -94,7 +94,7 @@ $(document).ready(function(){
 				var item = items[itemsSpun[i-1]];
 				//changeItem(i,item);
 				setTimeout(changeItem,(i*1000)+(100*((i-1)*(i-1))),i,item);
-				console.log((i*1000)+(100*((i-1)*(i-1))));
+				//console.log((i*1000)+(100*((i-1)*(i-1))));
 			}
 			//resetSpin();
 			setTimeout(resetSpin,6600);
@@ -103,6 +103,8 @@ $(document).ready(function(){
 	// get result of spin, if out of spins refresh page to show alert, update spins left, call spin to display result
 	$("#spinButton").click(function(){
 		$.get("spin.php",function(data){
+			// display result before finished
+			//console.log(data);
 			if (data[0] == '!'){
 				showAlert('No spins left!','danger');
 			} else {

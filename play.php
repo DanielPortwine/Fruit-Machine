@@ -32,7 +32,7 @@ if (empty($_SESSION['username'])) {
 		</div>
 		<!-- How many spins left -->
 		<div class="row">
-			<p class="col-sm my-2">Spins remaining: <span id="spinsLeft"></span> | Beer remaining: <span id="beersLeft"></span> | Beer spins left: <span id="beerSpinsLeft"></span></p>
+			<p class="col-sm my-2">Spins left: <span id="spinsLeft"></span> | Beer left: <span id="beersLeft"></span> | Beer spins left: <span id="beerSpinsLeft"></span></p>
 		</div>
 		<!-- spin button -->
 		<div class="row">
