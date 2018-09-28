@@ -4,10 +4,10 @@ require_once('connection.php');
 // assign result to more relevant variable name
 $result = $_POST['result'];
 // fetch all data for logged in user
-$userData = mysqli_fetch_row($conn->query("SELECT spinsLeft,xp,beers,beerSpinsLeft,spins,fives,fours,threes,twos,nothings FROM users WHERE username = '{$_SESSION['username']}';"));
+$userData = mysqli_fetch_row($conn->query("SELECT spinsLeft,xp,beers,beerSpinsLeft,spins,fives,fours,threes,twos,nothings,bombs FROM users WHERE username = '{$_SESSION['username']}';"));
 $spinsLeft = $userData[0];
 $xp = $userData[1];
-$originalXP = $xp;
+$gainedXP = 0;
 $beers = $userData[2];
 $beerSpinsLeft = $userData[3];
 $spins = $userData[4];
@@ -16,6 +16,7 @@ $twos = $userData[8];
 $threes = $userData[7];
 $fours = $userData[6];
 $fives = $userData[5];
+$bombs = $userData[10];
 // if the user has spins decrement them
 if ($spinsLeft > 0){
 	$spinsLeft--;
@@ -42,44 +43,64 @@ for ($i=0;$i<=sizeOf($items);$i++){
 	}
 }
 // find how many Beers were spun
-$beers += $itemsCount[6];
-// detect whether any matches have been generated
-$patternFound = false;
-foreach ($itemsCount as $count){
-	if ($count == 2){
-		$twos++;
-		$xp += 10;
-		$patternFound = true;
-	} else if ($count == 3){
-		$threes++;
-		$xp += 50;
-		$patternFound = true;
-	} else if ($count == 4){
-		$fours++;
-		$xp += 250;
-		$patternFound = true;
-		break;
-	} else if ($count == 5){
-		$fives++;
-		$xp += 5000;
-		$patternFound = true;
-		break;
+$beers += $itemsCount[7];
+// find out how many bombs were spun
+$bombsSpun = $itemsCount[4];
+if ($bombsSpun > 0){
+	$gainedXP = 0;
+	$bombs++;
+	// account for Beer xp bonus
+	if ($beerSpinsLeft > 0){
+		$beerSpinsLeft--;
+	}
+	if ($bombsSpun == 1){
+		$beers = ceil($beers * 0.8);
+	} else if ($bombsSpun == 2){
+		$beers = floor($beers * 0.8);
+	} else if ($bombsSpun == 3){
+		$beers = floor($beers * 0.5);
+	} else if ($bombsSpun == 4){
+		$beers = floor($beers * 0.2);
+	} else if ($bombsSpun == 5){
+		$beers = 0;
+	}
+} else {
+	// detect whether any matches have been generated
+	$patternFound = false;
+	foreach ($itemsCount as $count){
+		if ($count == 2){
+			$twos++;
+			$gainedXP += 10;
+			$patternFound = true;
+		} else if ($count == 3){
+			$threes++;
+			$gainedXP += 50;
+			$patternFound = true;
+		} else if ($count == 4){
+			$fours++;
+			$gainedXP += 250;
+			$patternFound = true;
+			break;
+		} else if ($count == 5){
+			$fives++;
+			$gainedXP += 5000;
+			$patternFound = true;
+			break;
+		}
+	}
+	if (!$patternFound){
+		$nothings++;
+		$gainedXP += 5;
+	}
+	// account for Beer xp bonus
+	if ($beerSpinsLeft > 0){
+		$gainedXP *= 2;
+		$beerSpinsLeft--;
 	}
 }
-if (!$patternFound){
-	$nothings++;
-	$xp += 5;
-}
-// calculate xp gained in this spin
-$gainedXP = $xp - $originalXP;
-// account for Beer xp bonus
-if ($beerSpinsLeft > 0){
-	$gainedXP *= 2;
-	$xp += $gainedXP;
-	$beerSpinsLeft--;
-}
 echo $gainedXP;
-$xp++;
+$gainedXP++;
+$xp += $gainedXP;
 // calculate user's level
 $xpLevel = floor($xp/1000);
 // calculate user's  score

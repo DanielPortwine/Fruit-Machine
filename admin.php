@@ -17,9 +17,10 @@ $foursTotal = 0;
 $threesTotal = 0;
 $twosTotal = 0;
 $nothingsTotal = 0;
+$bombsTotal = 0;
 $data = [];
 for ($i=1;$i<$totalUsers+1;$i++){
-	$row = mysqli_fetch_row($conn->query("SELECT spins,xp,score,beersUsed,fives,fours,threes,twos,nothings FROM users WHERE userID = {$i}"));
+	$row = mysqli_fetch_row($conn->query("SELECT spins,xp,score,beersUsed,fives,fours,threes,twos,nothings,bombs FROM users WHERE userID = {$i}"));
 	array_push($data,$row);
 	$spinsTotal += $row[0];
 	$xpTotal += $row[1];
@@ -30,6 +31,7 @@ for ($i=1;$i<$totalUsers+1;$i++){
 	$threesTotal += $row[6];
 	$twosTotal += $row[7];
 	$nothingsTotal += $row[8];
+	$bombsTotal += $row[9];
 }
 $spinsAvg = round($spinsTotal / $totalUsers,2);
 $xpAvg = round($xpTotal / $totalUsers,2);
@@ -40,6 +42,7 @@ $foursAvg = round($foursTotal / $totalUsers,2);
 $threesAvg = round($threesTotal / $totalUsers,2);
 $twosAvg = round($twosTotal / $totalUsers,2);
 $nothingsAvg = round($nothingsTotal / $totalUsers,2);
+$bombsAvg = round($bombsTotal / $totalUsers,2);
 
 $oldest = $conn->query("SELECT username, xplevel, dateCreated FROM users ORDER BY dateCreated ASC LIMIT 10")->fetch_all();
 $countOld = sizeOf($oldest);
@@ -87,6 +90,15 @@ $countYoung = sizeOf($youngest);
 			<tr>
 				<td class="text-right p-1">Average beer used:</td>
 				<td class="text-left p-1"><?php echo $beerAvg; ?></p>
+			</tr>
+			<tr><td></td></tr>
+			<tr>
+				<td class="text-right p-1">Total spins exploded:</td>
+				<td class="text-left p-1"><?php echo $bombsTotal; ?></p>
+			</tr>
+			<tr>
+				<td class="text-right p-1">Average spins exploded:</td>
+				<td class="text-left p-1"><?php echo $bombsAvg; ?></p>
 			</tr>
 			<tr><td></td></tr>
 			<tr>

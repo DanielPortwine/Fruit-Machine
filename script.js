@@ -36,6 +36,23 @@ $(document).ready(function(){
 	$("#logoutButton").click(function(){
 		window.location = 'logout.php';
 	});
+	// making the user active when they perform actions
+	setActive();
+	var mouseMoved = false;
+	$(document).click(setActive);
+	$(document).mousemove(function(){
+		if (mouseMoved == false){
+			mouseMoved = true;
+			setActive();
+			setTimeout(resetMouseMove,10000);
+		}
+	});
+	function resetMouseMove(){
+		mouseMoved = false;
+	}
+	function setActive(){
+		$.get("setActive.php");
+	}
 	// get item names
 	var items = [];
 	$.get("findItems.php",function(data){

@@ -8,7 +8,7 @@ if (empty($_SESSION['username'])) {
 	echo '<script>window.location = "index.php";</script>';
 }
 // fetch data from logged in user's record
-$userData = mysqli_fetch_row($conn->query("SELECT spinsLeft,score,xp,xpLevel,beers,beerSpinsLeft,beersUsed,spins,fives,fours,threes,twos,nothings,dateCreated,email FROM users WHERE username = '{$_SESSION['username']}';"));
+$userData = mysqli_fetch_row($conn->query("SELECT spinsLeft,score,xp,xpLevel,beers,beerSpinsLeft,beersUsed,spins,fives,fours,threes,twos,nothings,dateCreated,email,bombs FROM users WHERE username = '{$_SESSION['username']}';"));
 // assign more relevant variable names for user's data
 $spinsLeft = $userData[0];
 $score = $userData[1];
@@ -25,6 +25,7 @@ $fours = $userData[9];
 $fives = $userData[8];
 $dateJoined = strtotime($userData[13]);
 $email = $userData[14];
+$bombs = $userData[15];
 ?>
 <div class="vertical-center">
 	<div class="container text-center mb-5">
@@ -75,6 +76,10 @@ $email = $userData[14];
 			<tr>
 				<td class="text-right p-1">Total beer used:</td>
 				<td class="text-left p-1"><?php echo $beersTotal ?></p>
+			</tr>
+			<tr>
+				<td class="text-right p-1">Spins exploded:</td>
+				<td class="text-left p-1"><?php echo $bombs ?></p>
 			</tr>
 			<tr>
 				<td class="text-right p-1">Quintuples:</td>
