@@ -69,10 +69,22 @@ if ($bombsSpun > 0){
 	// extra spin items
 	$plusOnes = $itemsCount[13];
 	$plusFives = $itemsCount[14];
-	$plusTens = 0; //$itemsCount[12];
+	$plusTens = $itemsCount[12];
+	if ($plusTens > 0){
+		$gainedXP += $plusTens * 10;
+	}
+	if ($plusFives > 0){
+		$gainedXP += $plusFives * 5;
+	}
+	if ($plusOnes > 0){
+		$gainedXP += $plusOnes;
+	}
 	$spinsLeft += $plusOnes + ($plusFives * 5) + ($plusTens * 10);
 	// find how many Beers were spun
 	$beers += $itemsCount[7];
+	if ($itemsCount[7] > 0){
+		$gainedXP += $itemsCount[7] * 2;
+	}
 	// detect whether any matches have been generated
 	$patternFound = false;
 	foreach ($itemsCount as $count){
@@ -107,12 +119,11 @@ if ($bombsSpun > 0){
 	}
 }
 echo $gainedXP;
-$gainedXP++;
 $xp += $gainedXP;
 // calculate user's level
 $xpLevel = floor($xp/1000);
 // calculate user's  score
-$score = floor(($xp / $spins) + floor($xpLevel * 0.3));
+$score = floor((($xp / ($spins * 0.4)) + ceil($xpLevel * 2)) / 5);
 // update user's record
 $conn->query("UPDATE users SET score={$score},xp={$xp},xpLevel={$xpLevel},beers={$beers},beerSpinsLeft={$beerSpinsLeft},spins={$spins},spinsLeft={$spinsLeft},nothings={$nothings},twos={$twos},threes={$threes},fours={$fours},fives={$fives} WHERE username = '{$_SESSION['username']}';");
 ?>
