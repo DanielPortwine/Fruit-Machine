@@ -1,7 +1,7 @@
 <?php
 echo $_SERVER['HTTP_HOST'];
 if ($_SERVER['HTTP_DPTESTING'] == 'true' && $_SERVER['HTTP_HOST'] != 'staging.danportwine.co.uk') {
-    echo '<script>window.location = "http://staging.danportwine.co.uk/' . $_SERVER['REQUEST_URI'] . '";</script>';
+    echo '<script>window.location = "staging.danportwine.co.uk/' . $_SERVER['REQUEST_URI'] . '";</script>';
 }
 
 require_once('connection.php');
