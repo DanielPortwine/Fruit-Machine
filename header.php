@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER['HTTP_DPTESTING'] == 'true') {
-    echo '<script>window.location = "testing/' . $_SERVER['REQUEST_URI'] . '";</script>';
+    echo '<script>window.location = "http://staging.danportwine.co.uk/' . $_SERVER['REQUEST_URI'] . '";</script>';
 }
 
 require_once('connection.php');
