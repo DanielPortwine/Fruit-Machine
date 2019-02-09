@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER['HTTP_DPTESTING'] == 'trueg') {
+if ($_SERVER['HTTP_DPTESTING'] == 'true') {
     echo '<script>window.location = "testing/' . $_SERVER['REQUEST_URI'] . '";</script>';
 }
 
