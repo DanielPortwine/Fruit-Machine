@@ -1,4 +1,8 @@
 <?php
+if ($_SERVER['HTTP_DPTESTING'] == 'trueg') {
+    echo '<script>window.location = "testing/' . $_SERVER['REQUEST_URI'] . '";</script>';
+}
+
 require_once('connection.php');
 session_start();
 
