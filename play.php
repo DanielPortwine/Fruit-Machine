@@ -20,7 +20,6 @@ if (isset($_SESSION['username']) && $_SESSION['username'] === 'DanPortwine'){
         </button>
         <div class="collapse navbar-collapse" id="navbarContent1">
             <ul class="navbar-nav mr-auto">
-                <!-- play -->
                 <li><button class="nav-item btn btn-success m-1" id="adminSpins">+20 Spins</button></li>
                 <li><button class="nav-item btn btn-success m-1" id="adminBeers">+10 Beers</button></li>
                 <li>
@@ -33,7 +32,6 @@ if (isset($_SESSION['username']) && $_SESSION['username'] === 'DanPortwine'){
                         <input class="btn btn-success" type="button" id="spinButtonRigged" value="SPIN">
                     </form>
                 </li>
-                <li><button class="nav-item btn btn-success m-1" id="adminSimulateSpins">1000 spins</button></li>
             </ul>
         </div>
     </nav>';
