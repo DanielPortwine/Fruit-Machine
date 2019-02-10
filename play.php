@@ -40,41 +40,33 @@ if (isset($_SESSION['username']) && $_SESSION['username'] === 'DanPortwine'){
 }
 ?>
 
-<!-- show the amount of xp gained by the spin -->
 <h3 class="text-center w-100 mt-5" id="xpGainedContainer"><span class="rounded alert-success p-3 mt-5" id="xpGained"></span></h3>
 <div class="vertical-center">
 	<div class="container text-center mb-5">
-		<!-- items row -->
 		<div class="row">
-			<div class="col-sm">
+			<div class="center-block">
 				<img class="itemImage m-1" id="item1" src="images/begin.png">
 			</div>
-			<div class="col-sm">
+			<div class="center-block">
 				<img class="itemImage m-1" id="item2" src="images/begin.png">
 			</div>
-			<div class="col-sm">
+			<div class="center-block">
 				<img class="itemImage m-1" id="item3" src="images/begin.png">
 			</div>
-			<div class="col-sm">
+			<div class="center-block">
 				<img class="itemImage m-1" id="item4" src="images/begin.png">
 			</div>
-			<div class="col-sm">
+			<div class="center-block">
 				<img class="itemImage m-1" id="item5" src="images/begin.png">
 			</div>
 		</div>
-		<!-- How many spins left -->
 		<div class="row">
 			<p class="col-sm my-2">Spins left: <span id="spinsLeft"></span> | Beer left: <span id="beersLeft"></span> | Beer spins left: <span id="beerSpinsLeft"></span></p>
 		</div>
-		<!-- spin button -->
 		<div class="row">
-			<button class="btn btn-lg btn-success mx-auto p-3 px-4" id="spinButton"><i class="fa fa-rotate-right" style="font-size:50px;"></i></button>
+			<button class="btn btn-lg btn-success ml-auto mr-1 p-3 px-4" id="spinButton"><i class="fa fa-rotate-right" style="font-size:50px;"></i></button>
+            <button class="btn btn-lg btn-success mr-auto ml-1" id="beerButton"><img src="images/items/gulhhess.png"></img></button>
 		</div>
-		<!-- Beer button -->
-		<div class="row">
-			<button class="btn btn-lg btn-success mx-auto mt-2" id="beerButton"><img src="images/items/gulhhess.png"></img></button>
-		</div>
-		<!-- extra spins button -->
 		<div class="row">
 			<button class="btn btn-lg btn-success mx-auto mt-2" id="dailySpinButton">+20 spins<sub><span id="dailySpinTimeRemaining"></span></sub></button>
 		</div>
