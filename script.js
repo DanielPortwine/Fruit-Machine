@@ -70,7 +70,7 @@ $(document).ready(function(){
 		url: 'findItems',
 		success: function(data) {
 			items = data.split(',');
-			items[items.length-1] = items[items.length-1].substring(0,items[items.length-1].length-1);
+			//items[items.length-1] = items[items.length-1].substring(0,items[items.length-1].length-1);
 		}
 	});
 
