@@ -66,3 +66,13 @@ td{
 	display:none;
 	z-index:100;
 }
+
+.itemName {
+	text-transform:capitalize;
+}
+
+.specialItem {
+	max-height:64px;
+	display:block;
+	margin:0 auto;
+}

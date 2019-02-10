@@ -68,6 +68,7 @@ if (isset($_SESSION['alert'])) {
 			<li><a class="nav-item nav-link" id="playNav" href="play">Play</a></li>
 			<li><a class="nav-item nav-link" id="statsNav" href="stats">Stats</a></li>
 			<li><a class="nav-item nav-link" id="leaderboardNav" href="leaderboard">Leaderboard</a></li>
+            <li><a class="nav-item nav-link" id="guideNav" href="guide">Guide</a></li>
 			<?php
 			// show admin nav item if user is DanPortwine
 			if (isset($_SESSION['username'])){
