@@ -8,3 +8,4 @@ if ($result['salt'] == $_GET['unique'] && $_SESION['user'] == $_GET['user']) {
 } else {
     echo 'failed';
 }
+echo $_GET['unique'];
