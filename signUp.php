@@ -58,7 +58,7 @@ if (!$taken) {
         //Content
         $mail->isHTML(true);
         $mail->Subject = 'Welcome!';
-        $body = '<h2>Welcome!</h2><br>Welcome, ' . $_POST['username'] . ', to the fruit machine! To confirm your account and get started, please click the link below:<br><a href="http://fruitmachine.danportwine.co.uk/verify?unique=' . $salt . '&user=' . $userID . '">Click here to start!</a>';
+        $body = '<h2>Welcome!</h2><br>Welcome, ' . $_POST['username'] . ', to the fruit machine! To confirm your account and get started, please click the link below:<br><a href="http://staging.danportwine.co.uk/verify?unique=' . $salt . '&user=' . $userID . '">Click here to start!</a>';
         $mail->Body = $body;
         $mail->AltBody = strip_tags($body);
 

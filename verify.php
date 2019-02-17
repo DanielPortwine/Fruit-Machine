@@ -1,4 +1,4 @@
 <?php
 require_once('header.php');
 
-echo $_GET;
+print_r($_GET);
