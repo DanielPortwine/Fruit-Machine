@@ -16,8 +16,9 @@ if ($rows > 0) {
 // if the username is in the database and if the passwords match log in, otherwise alert that either username or password is wrong
 if ($exists) {
 	$user = mysqli_fetch_row($conn->query("SELECT * FROM users WHERE username = '{$_POST['username']}';"));
-	if (hash('sha512',$user[5] . $_POST['password']) === $user[4]) {
+	if (hash('sha512',$user[5] . $_POST['password']) === $user[4] && $user[23] === true) {
 		$_SESSION['username'] = $user[1];
+		$_SESSION['userID'] = $user[0];
 		$_SESSION['alert'] = 'Logged in';
 		$_SESSION['alert-type'] = 'success';
 		echo '<script>window.location = "play";</script>';
