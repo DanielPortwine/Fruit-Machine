@@ -5,4 +5,6 @@ $result = $conn->query("SELECT verified, salt FROM users WHERE username = {$_SES
 if ($result['salt'] == $_GET['unique'] && $_SESION['user'] == $_GET['user']) {
     $conn->query("UPDATE users SET verified = 1");
     echo 'Verified!';
+} else {
+    echo 'failed';
 }
