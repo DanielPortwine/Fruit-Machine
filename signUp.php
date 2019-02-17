@@ -1,4 +1,7 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 require_once('header.php');
 
 $taken = false;
@@ -30,13 +33,42 @@ if (!$taken) {
 	}
 	// create user's record in database
 	$conn->query("INSERT INTO users (username,email,news,pass,salt) VALUES ('{$_POST['username']}','{$_POST['email']}',{$consent},'{$password}','{$salt}');");
+	$userID = $conn->insert_id;
 	// alert user that their account has been created
 	$_SESSION['alert'] = 'Account created';
 	$_SESSION['alert-type'] = 'success';
 	// log the user in
 	$_SESSION['username'] = $_POST['username'];
+    $mail = new PHPMailer(true);
+    try {
+        //Server settings
+        $mail->SMTPDebug = 2;
+        $mail->isSMTP();
+        $mail->Host = $config['email']['server'];
+        $mail->SMTPAuth = true;
+        $mail->Username = $config['email']['user'];
+        $mail->Password = $config['email']['pass'];
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = $config['email']['port'];
+
+        //Recipients
+        $mail->setFrom($config['email']['user']);
+        $mail->addBCC($_POST['email']);
+
+        //Content
+        $mail->isHTML(true);
+        $mail->Subject = 'Welcome!';
+        $body = '<h2>Welcome!</h2><br>Welcome, ' . $_POST['username'] . ', to the fruit machine! To confirm your account and get started, please click the link below:<br><a href="http://fruitmachine.danportwine.co.uk/verify?unique=' . $salt . '&user=' . $userID . '">Click here to start!</a>\n.';
+        $mail->Body = $body;
+        $mail->AltBody = strip_tags($body);
+
+        $mail->send();
+        echo 'Message has been sent';
+    } catch (Exception $e) {
+        echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+    }
 	// redirect to play
-	echo '<script>window.location = "play";</script>';
+	//echo '<script>window.location = "play";</script>';
 }
 
 // if username is taken alert user that the username is taken and redirect to login
