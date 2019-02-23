@@ -21,8 +21,12 @@ if ($rows > 0) {
 if (!$taken) {
 	$characters = '0123456789abcdefghijklmnopqrstuvwxyz';
 	$salt = '';
+	$verification = '';
 	for ($i=0; $i<128; $i++) {
 		$salt .= $characters[rand(0,35)];
+		if ($i % 2 == 0) {
+		    $verification .= $characters[rand(0,35)];
+        }
 	}
 	$password = hash('sha512',$salt . $_POST['password']);
 	if (isset($_POST['newsContent'])) {
@@ -32,7 +36,7 @@ if (!$taken) {
 		$consent = 0;
 	}
 	// create user's record in database
-	$conn->query("INSERT INTO users (username,email,news,pass,salt) VALUES ('{$_POST['username']}','{$_POST['email']}',{$consent},'{$password}','{$salt}');");
+	$conn->query("INSERT INTO users (username,email,news,pass,salt,verification) VALUES ('{$_POST['username']}','{$_POST['email']}',{$consent},'{$password}','{$salt}','{$verification}');");
 	$userID = $conn->insert_id;
 	$_SESSION['verified'] = false;
     $mail = new PHPMailer(true);
@@ -60,7 +64,7 @@ if (!$taken) {
             <div style="color:#202428;background-color:#fff;padding:20px 20px">
                 <p>Hi ' .  $_POST['username'] . ',</p>
                 <p>Welcome to the fruit machine! I am so glad that you have chosen to play my fruit machine. To confirm your account and get started, please click the button below.</p>
-                <a style="color:#fff;background-color:#27a545;width:250px;display:block;margin:0 auto;border:none;border-radius:5px;padding:10px;text-align:center;text-decoration:none;font-size:18px" href="' . $config['server']['baseDomain'] . 'verify?unique=' . $salt . '&user=' . $userID . '" target="_blank">Verify</a>
+                <a style="color:#fff;background-color:#27a545;width:250px;display:block;margin:0 auto;border:none;border-radius:5px;padding:10px;text-align:center;text-decoration:none;font-size:18px" href="' . $config['server']['baseDomain'] . 'verify?unique=' . $verification . '&user=' . $userID . '" target="_blank">Verify</a>
                 <p><sub>Un-verified accounts are purged on a regular basis so verify as soon as you can to avoid having to sign up again.</sub></p>
             </div>
         ' . $config['email']['signature'];
