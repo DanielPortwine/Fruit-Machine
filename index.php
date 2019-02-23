@@ -35,6 +35,6 @@ if (isset($_SESSION['userID']) && isset($_SESSION['verified']) && $_SESSION['ver
 			</div>
 			<button type="submit" class="btn btn-success btn-block">Login</button>
 		</form>
-		<button class="btn btn-default btn-sm float-right" id="loginStateButton">Sign up</button>
+		<button class="btn btn-default btn-sm float-right" id="loginStateButton">Login</button>
 	</div>
 </div>
