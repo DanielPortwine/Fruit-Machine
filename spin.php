@@ -9,7 +9,7 @@ unset($items[0]);
 unset($items[1]);
 
 // if user has spins generate 5 random numbers corresponding to items in the items directory
-if (mysqli_fetch_row($conn->query("SELECT spinsLeft FROM users WHERE username = '{$_SESSION['username']}';"))[0] > 0){
+if (mysqli_fetch_row($conn->query("SELECT spinsLeft FROM users WHERE userID = '{$_SESSION['userID']}'"))[0] > 0){
 	$minute = date('i');
 	$second = date('s');
 	if (($minute == 20 && $second == 18) || ($minute == 13 && $second == 13)){

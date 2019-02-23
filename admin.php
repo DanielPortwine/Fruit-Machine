@@ -6,7 +6,7 @@ $_SESSION['page'] = 'admin';
 echo '<script>$("#' . $_SESSION['page'] . 'Nav").addClass("active");</script>';
 // if user is not logged in or not admin redirect to login page
 if (empty($_SESSION['username']) || $_SESSION['username'] !== 'DanPortwine') {
-	echo '<script>window.location = "index";</script>';
+	header('Location: index');
 }
 
 $totalUsers = mysqli_num_rows($conn->query("SELECT userID FROM users"));
@@ -154,36 +154,40 @@ $countYoung = sizeOf($youngest);
 		<div class="row">
 			<?php
 			for ($i=1;$i<=$countOld;$i++){
-				if (($i + 1) % 2 == 0){
-					echo '<div class="w-100"></div>';
-				}
-				echo '<div class="col-sm rounded my-1 p-1 mx-1 bg-dark">
-					<p class="float-left"><span class="bg-primary my-1 mr-1 px-2 rounded">' . $i . '</span><span class="text-light my-1 px-2 rounded-left" style="background-color:#222">' . $oldest[$i-1][1] . '</span><span class="my-1 px-3 rounded-right" style="background-color:#888">' . $oldest[$i-1][0] . '</span>
+				if (($i + 1) % 2 == 0){ ?>
+					<div class="w-100"></div>
+				<?php } ?>
+				<div class="col-sm rounded my-1 p-1 mx-1 bg-dark">
+					<p class="float-left">
+                        <span class="bg-primary my-1 mr-1 px-2 rounded"><?= $i ?></span>
+                        <span class="text-light my-1 px-2 rounded-left" style="background-color:#222"><?= $oldest[$i-1][1] ?></span>
+                        <span class="my-1 px-3 rounded-right" style="background-color:#888"><?= $oldest[$i-1][0] ?></span>
 					</p>
-					<p class="float-right rounded bg-success px-2">' .
-						date('d/m/Y',strtotime($oldest[$i-1][2])) . '
+					<p class="float-right rounded bg-success px-2">
+                        <?= date('d/m/Y',strtotime($oldest[$i-1][2])) ?>
 					</p>
-				</div>';
-			}
-			?>
+				</div>
+			<?php } ?>
 		</div>
 		<hr>
 		<h4>Youngest 10 users</h4>
 		<div class="row">
 			<?php
 			for ($i=1;$i<=$countYoung;$i++){
-				if (($i + 1) % 2 == 0){
-					echo '<div class="w-100"></div>';
-				}
-				echo '<div class="col-sm rounded my-1 p-1 mx-1 bg-dark">
-					<p class="float-left"><span class="bg-primary my-1 mr-1 px-2 rounded">' . $i . '</span><span class="text-light my-1 px-2 rounded-left" style="background-color:#222">' . $youngest[$i-1][1] . '</span><span class="my-1 px-3 rounded-right" style="background-color:#888">' . $youngest[$i-1][0] . '</span>
+				if (($i + 1) % 2 == 0){ ?>
+					<div class="w-100"></div>
+				<?php } ?>
+				<div class="col-sm rounded my-1 p-1 mx-1 bg-dark">
+					<p class="float-left">
+                        <span class="bg-primary my-1 mr-1 px-2 rounded"><?= $i ?></span>
+                        <span class="text-light my-1 px-2 rounded-left" style="background-color:#222"><?= $youngest[$i-1][1] ?></span>
+                        <span class="my-1 px-3 rounded-right" style="background-color:#888"><?= $youngest[$i-1][0] ?></span>
 					</p>
-					<p class="float-right rounded bg-success px-2">' .
-						date('d/m/Y',strtotime($youngest[$i-1][2])) . '
-					</p>
-				</div>';
-			}
-			?>
+					<p class="float-right rounded bg-success px-2">
+                        <?= date('d/m/Y',strtotime($youngest[$i-1][2])) ?>
+                    </p>
+				</div>
+			<?php } ?>
 		</div>
 	</div>
 </div>

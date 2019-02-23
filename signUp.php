@@ -34,15 +34,11 @@ if (!$taken) {
 	// create user's record in database
 	$conn->query("INSERT INTO users (username,email,news,pass,salt) VALUES ('{$_POST['username']}','{$_POST['email']}',{$consent},'{$password}','{$salt}');");
 	$userID = $conn->insert_id;
-	// alert user that their account has been created
-	$_SESSION['alert'] = 'Account created';
-	$_SESSION['alert-type'] = 'success';
-	// log the user in
-	$_SESSION['username'] = $_POST['username'];
+	$_SESSION['verified'] = false;
     $mail = new PHPMailer(true);
     try {
         //Server settings
-        $mail->SMTPDebug = 2;
+        //$mail->SMTPDebug = 2;
         $mail->isSMTP();
         $mail->Host = $config['email']['server'];
         $mail->SMTPAuth = true;
@@ -52,28 +48,38 @@ if (!$taken) {
         $mail->Port = $config['email']['port'];
 
         //Recipients
-        $mail->setFrom($config['email']['user']);
+        $mail->setFrom($config['email']['user'], $config['email']['name']);
+        $mail->addBCC($config['email']['user']);
         $mail->addBCC($_POST['email']);
 
         //Content
         $mail->isHTML(true);
         $mail->Subject = 'Welcome!';
-        $body = '<h2>Welcome!</h2><br>Welcome, ' . $_POST['username'] . ', to the fruit machine! To confirm your account and get started, please click the link below:<br><a href="http://staging.danportwine.co.uk/verify?unique=' . $salt . '&user=' . $userID . '">Click here to start!</a>';
+        $body = '
+            <h1 style="color:#fff;background-color:#343a40;text-align:center;padding:20px">Welcome</h1>
+            <div style="color:#202428;background-color:#fff;padding:20px 20px">
+                <p>Hi ' .  $_POST['username'] . ',</p>
+                <p>Welcome to the fruit machine! I am so glad that you have chosen to play my fruit machine. To confirm your account and get started, please click the button below.</p>
+                <a style="color:#fff;background-color:#27a545;width:250px;display:block;margin:0 auto;border:none;border-radius:5px;padding:10px;text-align:center;text-decoration:none;font-size:18px" href="' . $config['server']['baseDomain'] . 'verify?unique=' . $salt . '&user=' . $userID . '" target="_blank">Verify</a>
+                <p><sub>Un-verified accounts are purged on a regular basis so verify as soon as you can to avoid having to sign up again.</sub></p>
+            </div>
+        ' . $config['email']['signature'];
         $mail->Body = $body;
         $mail->AltBody = strip_tags($body);
 
         $mail->send();
-        echo 'Message has been sent';
+        $_SESSION['alert'] = 'Verification email sent!';
+        $_SESSION['alert-type'] = 'success';
     } catch (Exception $e) {
-        echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+        $_SESSION['alert'] = 'Verification email failed to send!';
+        $_SESSION['alert-type'] = 'danger';
     }
-	// redirect to play
-	//echo '<script>window.location = "play";</script>';
+	header('Location: index');
 }
 
 // if username is taken alert user that the username is taken and redirect to login
 else {
 	$_SESSION['alert'] = 'Username taken';
 	$_SESSION['alert-type'] = 'danger';
-	echo '<script>window.location = "index";</script>';
+	header('Location: index');
 }

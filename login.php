@@ -5,30 +5,38 @@ require_once('header.php');
 $rows = $conn->query("SELECT userID FROM users;")->num_rows;
 // if there are records select each username and compare with user's selected username
 if ($rows > 0) {
-	foreach ($conn->query("SELECT username FROM users;") as $user) {
+	foreach ($conn->query("SELECT userID, username FROM users") as $user) {
 		if ($_POST['username'] == $user['username']) {
-			$exists = true;
+			$userID = $user['userID'];
 			break;
 		}
 	}
 }
 
 // if the username is in the database and if the passwords match log in, otherwise alert that either username or password is wrong
-if ($exists) {
-	$user = mysqli_fetch_row($conn->query("SELECT * FROM users WHERE username = '{$_POST['username']}';"));
-	if (hash('sha512',$user[5] . $_POST['password']) === $user[4] && $user[23] === true) {
-		$_SESSION['username'] = $user[1];
-		$_SESSION['userID'] = $user[0];
-		$_SESSION['alert'] = 'Logged in';
-		$_SESSION['alert-type'] = 'success';
-		echo '<script>window.location = "play";</script>';
-	} else {
-		$_SESSION['alert'] = 'Incorrect username or password';
-		$_SESSION['alert-type'] = 'danger';
-		echo '<script>window.location = "index";</script>';
-	}
+if (isset($userID)) {
+	$query = $conn->query("SELECT * FROM users WHERE userID = '{$userID}'");
+    $user = $query->fetch_array(MYSQLI_ASSOC);
+	if ($user['verified'] != 1) {
+	    $_SESSION['alert'] = 'Account has not been verified!';
+	    $_SESSION['alert-type'] = 'danger';
+	    header('Location: index');
+    } else {
+        if (hash('sha512', $user['salt'] . $_POST['password']) === $user['pass'] && $user['verified'] == 1) {
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['userID'] = $user['userID'];
+            $_SESSION['verified'] = true;
+            $_SESSION['alert'] = 'Logged in';
+            $_SESSION['alert-type'] = 'success';
+            header('Location: play');
+        } else {
+            $_SESSION['alert'] = 'Incorrect username or password';
+            $_SESSION['alert-type'] = 'danger';
+            header('Location: index');
+        }
+    }
 } else {
 	$_SESSION['alert'] = 'Incorrect username or password';
 	$_SESSION['alert-type'] = 'danger';
-	echo '<script>window.location = "index";</script>';
+	header('Location: index');
 }

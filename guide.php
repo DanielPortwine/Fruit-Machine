@@ -34,15 +34,12 @@ echo '<script>$("#' . $_SESSION['page'] . 'Nav").addClass("active");</script>';
         $items = scandir('images/items');
         for ($i=2;$i<=(sizeOf($items)-1);$i++){
             $item = $items[$i];
-            if ($item != 'bomb.png' && $item != 'gulhhess.png' && $item != 'plus10Spin.png' && $item != 'plus1Spin.png' && $item != 'plus5Spin.png') {
-                echo '
+            if ($item != 'bomb.png' && $item != 'gulhhess.png' && $item != 'plus10Spin.png' && $item != 'plus1Spin.png' && $item != 'plus5Spin.png') { ?>
                 <div class="col-sm">
-                    <img class="itemImage m-1" src="images/items/' . $item . '">
-                    <p class="itemName">' . str_replace('.png', '', $item) . '</p>
+                    <img class="itemImage m-1" src="images/items/<?= $item ?>">
+                    <p class="itemName"><?= str_replace('.png', '', $item) ?></p>
                 </div>
-            ';
-            }
-        }
-        ?>
+            <?php }
+        } ?>
     </div>
 </div>
