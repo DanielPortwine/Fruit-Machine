@@ -5,10 +5,10 @@ $(document).ready(function(){
 			$(id).remove();
 		});
 	}
-	setTimeout(fadeAlert,5000);
+	setTimeout(function(){fadeAlert('#alertBox')},5000);
 
 	// login and sign up form swapping
-	var loginState = 'Login';
+	var loginState = 'Sign Up';
 	$("#loginStateButton").click(function(){
 		$("#loginStateButton").text(loginState);
 		if (loginState == 'Login'){
@@ -135,7 +135,6 @@ $(document).ready(function(){
 				if (data[0] == '!'){
 					showAlert('No spins left!','danger');
 				} else {
-					//setTimeout(showSpins,1000);
 					var strArr = data.split(',');
 					for(i=0;i<strArr.length;i++){
 						itemsSpun.push(parseInt(strArr[i]));
@@ -205,6 +204,7 @@ $(document).ready(function(){
 			complete: function() {
 				clearInterval(countdownInterval);
 				dailySpinCountdown();
+				showSpins();
 			}
 		});
 	});
@@ -247,7 +247,11 @@ $(document).ready(function(){
 			type: 'GET',
 			url: 'useBeer',
 			success: function(data) {
-				showAlert(data,'success');
+				if (data[0] == '2') {
+					showAlert(data, 'success');
+				} else {
+					showAlert(data, 'danger');
+				}
 			},
 			complete: function() {
 				showSpins();

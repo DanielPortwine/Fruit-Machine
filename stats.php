@@ -7,12 +7,12 @@ $_SESSION['page'] = 'stats';
 echo '<script>$("#' . $_SESSION['page'] . 'Nav").addClass("active");</script>';
 
 // if user is not logged in redirect to login page
-if (empty($_SESSION['username'])) {
-	echo '<script>window.location = "index";</script>';
+if (!isset($_SESSION['userID']) || !isset($_SESSION['verified']) || $_SESSION['verified'] != true) {
+	header('Location:index');
 }
 
 // fetch data from logged in user's record
-$userData = mysqli_fetch_row($conn->query("SELECT spinsLeft,score,xp,xpLevel,beers,beerSpinsLeft,beersUsed,spins,fives,fours,threes,twos,nothings,dateCreated,email,bombs FROM users WHERE username = '{$_SESSION['username']}';"));
+$userData = mysqli_fetch_row($conn->query("SELECT spinsLeft,score,xp,xpLevel,beers,beerSpinsLeft,beersUsed,spins,fives,fours,threes,twos,nothings,dateCreated,email,bombs FROM users WHERE userID = '{$_SESSION['userID']}';"));
 // assign more relevant variable names for user's data
 $spinsLeft = $userData[0];
 $score = $userData[1];
