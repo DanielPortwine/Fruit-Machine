@@ -6,6 +6,15 @@ $_SESSION['page'] = 'index';
 if (isset($_SESSION['userID']) && isset($_SESSION['verified']) && $_SESSION['verified'] == true) {
 	header('Location: play');
 } ?>
+
+<div class="mx-auto text-center">
+    <h1 class="my-5">Welcome</h1>
+    <p>Welcome to my fruit machine! I am very glad that you have come.</p>
+    <p>Before you get started and jump into the action, please sign up and confirm you email address.</p>
+    <p>If you come across any bugs or issues please contact support@danportwine.co.uk and give as much detail as you can.</p>
+    <p>If you need some help on how to play, check out the <a href="guide">guide</a>.</p>
+    <p>Good luck and have fun!</p>
+</div>
 <div class="mx-auto mt-5 card">
 	<h5 class="card-header text-center" id="loginStateTitle">Sign Up</h5>
 	<div class="card-body">
