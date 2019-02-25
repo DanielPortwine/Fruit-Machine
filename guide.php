@@ -16,7 +16,7 @@ echo '<script>$("#' . $_SESSION['page'] . 'Nav").addClass("active");</script>';
     <h3>Stats</h3>
     <p class="mb-4">The game tracks every spin you make and the results can be viewed in the stats page along with your account information including level and xp.</p>
     <h3>Leaderboard</h3>
-    <p class="mb-4">The number in blue <image> shows the position of the player. The number in green <image> represents that user’s score. The number in dark grey next to the username (also displayed in the header1) represents the user’s level. If the user is logged in when viewing the leaderboard, their entry will be displayed at the very top 2 however if the user is not logged in then this will instead show the entry for the number one player.</p>
+    <p class="mb-4">The number in blue shows the position of the player. The number in green represents that user’s score. The number in dark grey next to the username (also displayed in the header) represents the user’s level. If the user is logged in when viewing the leaderboard, their entry will be displayed at the very top. However if the user is not logged in then this will instead show the entry for the number one player.</p>
     <h3 class="mb-4">Special Items</h3>
     <div class="row">
         <img class="specialItem" src="images/items/gulhhess.png">
