@@ -75,9 +75,10 @@ $(document).ready(function(){
 	});
 
 	var canSpin = true;
-	var itemsSpun = []
+	var itemsSpun = [];
 	// set the item from spinning.gif to the generated item
 	function changeItem(itemNo,item){
+		clearInterval(itemIntervals[itemNo]);
 		itemNo = "#item" + itemNo;
 		$(itemNo).attr("src","images/items/"+item+".png");
 	}
@@ -93,15 +94,16 @@ $(document).ready(function(){
 	}
 
 	// disable spin button set each item to spinning.gif, call to display item every 2, save results and update user's level
+	var itemIntervals = [];
 	function spin(){
 		if (canSpin == true){
 			canSpin = false;
 			$("#spinButton").attr("disabled",true);
 			for (i=1;i<=5;i++){
 				var itemNo = "#item" + i;
-				$(itemNo).attr("src","images/spinning.gif");
 				var item = items[itemsSpun[i-1]];
-				var time = (i*1000)+(100*((i-1)*(i-1)));
+				var time = (i*2000)+(100*((i-1)*(i-1)));
+				createInterval(i);
 				setTimeout(changeItem,time,i,item);
 			}
 			setTimeout(resetSpin,time);
@@ -124,6 +126,13 @@ $(document).ready(function(){
 				}
 			});
 		}
+	}
+
+	// make each item spin randomly until displayed
+	function createInterval(item) {
+		itemIntervals[item] = setInterval(function() {
+			$("#item" + item).attr('src', 'images/items/' + items[Math.floor(Math.random() * 18)] + '.png');
+		}, 100);
 	}
 
 	// get result of spin, if out of spins refresh page to show alert, update spins left, call spin to display result
