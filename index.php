@@ -15,7 +15,7 @@ if (isset($_SESSION['userID']) && isset($_SESSION['verified']) && $_SESSION['ver
     <p>If you need some help on how to play, check out the <a href="guide">guide</a>.</p>
     <p>Good luck and have fun!</p>
 </div>
-<div class="mx-auto mt-5 card">
+<div class="mx-auto my-5 card">
 	<h5 class="card-header text-center" id="loginStateTitle">Sign Up</h5>
 	<div class="card-body">
         <!-- Sign up form -->
