@@ -4,4 +4,5 @@ session_start();
 
 $currentTime = date('Y-m-d H:i:s');
 $time = date('Y-m-d H:i:s',strtotime($currentTime . '+1 minute'));
-$conn->query("UPDATE users SET active={$time}");
+$conn->query("UPDATE users SET active='{$time}'");
+echo $conn->error;

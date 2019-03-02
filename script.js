@@ -100,9 +100,8 @@ $(document).ready(function(){
 			canSpin = false;
 			$("#spinButton").attr("disabled",true);
 			for (i=1;i<=5;i++){
-				var itemNo = "#item" + i;
 				var item = items[itemsSpun[i-1]];
-				var time = (i*2000)+(100*((i-1)*(i-1)));
+				var time = 5000 + (i*1000);
 				createInterval(i);
 				setTimeout(changeItem,time,i,item);
 			}
@@ -142,6 +141,7 @@ $(document).ready(function(){
 			url: 'spin',
 			success: function(data) {
 				if (data[0] == '!'){
+					canSpin = false;
 					showAlert('No spins left!','danger');
 				} else {
 					var strArr = data.split(',');
@@ -151,7 +151,9 @@ $(document).ready(function(){
 				}
 			},
 			complete: function() {
-				spin();
+				if (canSpin == true) {
+					spin();
+				}
 			}
 		});
 	});
