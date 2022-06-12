@@ -35,9 +35,6 @@ if (!$taken) {
 	else {
 		$consent = 0;
 	}
-    echo $salt . '<br>';
-    echo $password . '<br>';
-    echo $verification . '<br>';
 	// create user's record in database
 	$conn->query("INSERT INTO users (username,email,news,pass,salt,verification) VALUES ('{$_POST['username']}','{$_POST['email']}',{$consent},'{$password}','{$salt}','{$verification}');");
 	$userID = $conn->insert_id;
