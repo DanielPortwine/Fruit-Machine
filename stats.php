@@ -8,7 +8,7 @@ echo '<script>$("#' . $_SESSION['page'] . 'Nav").addClass("active");</script>';
 
 // if user is not logged in redirect to login page
 if (!isset($_SESSION['userID']) || !isset($_SESSION['verified']) || $_SESSION['verified'] != true) {
-	header('Location:index');
+	echo '<script>window.location = "index.php"</script>';
 }
 
 // fetch data from logged in user's record

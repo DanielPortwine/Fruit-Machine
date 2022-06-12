@@ -6,7 +6,7 @@ $_SESSION['page'] = 'admin';
 echo '<script>$("#' . $_SESSION['page'] . 'Nav").addClass("active");</script>';
 // if user is not logged in or not admin redirect to login page
 if (empty($_SESSION['username']) || $_SESSION['username'] !== 'DanPortwine') {
-	header('Location: index');
+	echo '<script>window.location = "index.php"</script>';
 }
 
 $totalUsers = mysqli_num_rows($conn->query("SELECT userID FROM users"));
@@ -23,18 +23,19 @@ $bombsTotal = 0;
 $data = [];
 
 for ($i=1;$i<$totalUsers+1;$i++){
-	$row = mysqli_fetch_row($conn->query("SELECT spins,xp,score,beersUsed,fives,fours,threes,twos,nothings,bombs FROM users WHERE userID = {$i}"));
+	$result = $conn->query("SELECT spins,xp,score,beersUsed,fives,fours,threes,twos,nothings,bombs FROM users WHERE userID = {$i}");
+    $row = $result->fetch_array(MYSQLI_ASSOC);
 	array_push($data,$row);
-	$spinsTotal += $row[0];
-	$xpTotal += $row[1];
-	$scoreTotal += $row[2];
-	$beersTotal += $row[3];
-	$fivesTotal += $row[4];
-	$foursTotal += $row[5];
-	$threesTotal += $row[6];
-	$twosTotal += $row[7];
-	$nothingsTotal += $row[8];
-	$bombsTotal += $row[9];
+	$spinsTotal += $row['spins'];
+	$xpTotal += $row['xp'];
+	$scoreTotal += $row['score'];
+	$beersTotal += $row['beersUsed'];
+	$fivesTotal += $row['fives'];
+	$foursTotal += $row['fours'];
+	$threesTotal += $row['threes'];
+	$twosTotal += $row['twos'];
+	$nothingsTotal += $row['nothings'];
+	$bombsTotal += $row['bombs'];
 }
 
 $spinsAvg = round($spinsTotal / $totalUsers,2);

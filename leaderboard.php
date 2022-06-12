@@ -53,9 +53,9 @@ if (isset($_SESSION['username'])){
 				<div class="col-sm <?= $username == $_SESSION['username'] ? 'bg-warning' : 'bg-dark' ?> rounded my-1 p-1 mx-1">
 					<p class="float-left"><span class="bg-primary my-1 mr-1 px-2 rounded"><?= $i ?></span><span class="text-light my-1 px-2 rounded-left" style="background-color:#222"><?= $level ?></span><span class="my-1 px-3 rounded-right" style="background-color:#888"><?= $username ?></span></p>
 					<p class="float-right rounded bg-success px-2 ml-2"><?= $score ?></p>
-					<?php if (isset($_SESSION['username']) && $_SESSION['username'] == 'DanPortwine'){ ?>
-						<p class="float-right rounded bg-success px-2 ml-2"><?= $spins ?></p>
-					<?php } ?>
+					<?php /*if (isset($_SESSION['username']) && $_SESSION['username'] == 'DanPortwine'){ */?><!--
+						<p class="float-right rounded bg-success px-2 ml-2"><?/*= $spins */?></p>
+					--><?php /*} */?>
 				</div>
 				<div class="col-sm"></div>
 			</div>

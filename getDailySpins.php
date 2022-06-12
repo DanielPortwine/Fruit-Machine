@@ -3,9 +3,10 @@ require_once('connection.php');
 session_start();
 
 // fetch the complete record for the logged in user
-$userData = mysqli_fetch_row($conn->query("SELECT * FROM users WHERE username = '{$_SESSION['username']}';"));
-$dailySpinTime = date($userData[8]);
-$spinsLeft = $userData[7];
+$result = $conn->query("SELECT * FROM users WHERE username = '{$_SESSION['username']}';");
+$userData = $result->fetch_array(MYSQLI_ASSOC);
+$dailySpinTime = date($userData['dailySpinTime']);
+$spinsLeft = $userData['spinsLeft'];
 $currentTime = date('Y-m-d H:i:s');
 
 // if the time that the user can collect bonus spins is less than the current time give their bonus spins and set next time to current + 6 hours

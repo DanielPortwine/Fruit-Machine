@@ -11,7 +11,7 @@ if (isset($_SESSION['username']) && $_SESSION['username'] === 'DanPortwine') {
 }
 
 // collect visitor's IP and userID if logged in
-$visitorIP = $_SERVER['REMOTE_ADDR'];
+/*$visitorIP = $_SERVER['REMOTE_ADDR'];
 $query = $conn->query("SELECT * FROM visitors WHERE visitorIP = '{$visitorIP}'");
 $result = $query->fetch_array(MYSQLI_ASSOC);
 $visitorDataCollected = false;
@@ -26,7 +26,7 @@ if ($result['visitorIP'] == $visitorIP && empty($result['userID']) && isset($_SE
 }
 if ($visitorDataCollected === false) {
     $conn->query($sql);
-}
+}*/
 
 // display an alert
 if (isset($_SESSION['alert'])) { ?>
@@ -58,30 +58,30 @@ if (isset($_SESSION['alert'])) { ?>
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	<a href="index" class="navbar-brand">Fruit Machine</a>
+	<a href="index.php" class="navbar-brand">Fruit Machine</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse" id="navbarContent">
 		<ul class="navbar-nav mr-auto">
 			<li>
-                <a class="nav-item nav-link" id="playNav" href="play">Play</a>
+                <a class="nav-item nav-link" id="playNav" href="play.php">Play</a>
             </li>
 			<li>
-                <a class="nav-item nav-link" id="statsNav" href="stats">Stats</a>
+                <a class="nav-item nav-link" id="statsNav" href="stats.php">Stats</a>
             </li>
 			<li>
-                <a class="nav-item nav-link" id="leaderboardNav" href="leaderboard">Leaderboard</a>
+                <a class="nav-item nav-link" id="leaderboardNav" href="leaderboard.php">Leaderboard</a>
             </li>
             <li>
-                <a class="nav-item nav-link" id="guideNav" href="guide">Guide</a>
+                <a class="nav-item nav-link" id="guideNav" href="guide.php">Guide</a>
             </li>
 			<?php
 			// show admin nav item if user is DanPortwine
 			if (isset($_SESSION['username'])){
 				if ($_SESSION['username'] == 'DanPortwine'){ ?>
 					<li>
-                        <a class="nav-item nav-link" id="adminNav" href="admin">Admin</a>
+                        <a class="nav-item nav-link" id="adminNav" href="admin.php">Admin</a>
                     </li>
 				<?php }
 			} ?>

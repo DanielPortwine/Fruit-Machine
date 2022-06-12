@@ -11,15 +11,15 @@ if ($result != null) {
         $_SESSION['userID'] = $_GET['user'];
         $_SESSION['username'] = $result['username'];
         $_SESSION['verified'] = true;
-        header('Location: play');
+        echo '<script>window.location = " play.php"</script>';
     } else {
         $_SESSION['alert'] = 'Account could not be verified!';
         $_SESSION['alert-type'] = 'danger';
         $_SESSION['verified'] = false;
-        header('Location: index');
+        echo '<script>window.location = "index.php"</script>';
     }
 } else {
     $_SESSION['alert'] = 'Your verification is out of date, please sign up again.';
     $_SESSION['alert-type'] = 'danger';
-    header('Location:index');
+    echo '<script>window.location = "index.php"</script>';
 }

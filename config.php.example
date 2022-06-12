@@ -1,0 +1,17 @@
+<?php
+$config = [
+    'db' => [
+        'host' => 'mysql',
+        'user' => 'fruitmachine',
+        'pass' => '',
+        'name' => 'fruitmachine',
+    ],
+    'email' => [
+        'server' => 'smtp.mailtrap.io',
+        'user' => '',
+        'pass' => '',
+        'from' => 'accounts@fruitmachine.com',
+        'name' => 'Fruit Machine',
+        'port' => 2525,
+    ]
+];

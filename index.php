@@ -4,7 +4,7 @@ $_SESSION['page'] = 'index';
 
 // if user is logged in redirect to play page
 if (isset($_SESSION['userID']) && isset($_SESSION['verified']) && $_SESSION['verified'] == true) {
-	header('Location: play');
+	echo '<script>window.location = "play.php"</script>';
 } ?>
 
 <div class="mx-auto text-center">
@@ -12,14 +12,14 @@ if (isset($_SESSION['userID']) && isset($_SESSION['verified']) && $_SESSION['ver
     <p>Welcome to my fruit machine! I am very glad that you have come.</p>
     <p>Before you get started and jump into the action, please sign up and confirm you email address.</p>
     <p>If you come across any bugs or issues please contact support@danportwine.co.uk and give as much detail as you can.</p>
-    <p>If you need some help on how to play, check out the <a href="guide">guide</a>.</p>
+    <p>If you need some help on how to play, check out the <a href="guide.php">guide</a>.</p>
     <p>Good luck and have fun!</p>
 </div>
 <div class="mx-auto my-5 card">
 	<h5 class="card-header text-center" id="loginStateTitle">Sign Up</h5>
 	<div class="card-body">
         <!-- Sign up form -->
-        <form action="signUp" method="post" id="signUpForm">
+        <form action="signUp.php" method="post" id="signUpForm">
             <div class="form-group">
                 <input type="text" class="form-control" name="username" placeholder="Username" required>
             </div>
@@ -35,7 +35,7 @@ if (isset($_SESSION['userID']) && isset($_SESSION['verified']) && $_SESSION['ver
             <button type="submit" class="btn btn-success btn-block">Sign up</button>
         </form>
 		<!-- Login form -->
-		<form action="login" method="post" id="loginForm">
+		<form action="login.php" method="post" id="loginForm">
 			<div class="form-group">
 				<input type="text" class="form-control" name="username" placeholder="Username" required autofocus>
 			</div>

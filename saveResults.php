@@ -151,6 +151,6 @@ $conn->query("
                       threes={$threes},
                       fours={$fours},
                       fives={$fives},
-                      bombs={$bombsSpun}
+                      bombs={$bombs}
                     WHERE username = '{$_SESSION['username']}';
 ");

@@ -10,4 +10,4 @@ $_SESSION['alert'] = 'Logged out';
 $_SESSION['alert-type'] = 'success';
 
 // redirect to login page
-header('Location: index');
+echo '<script>window.location = "index.php"</script>';

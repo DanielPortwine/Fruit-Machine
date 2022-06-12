@@ -35,6 +35,9 @@ if (!$taken) {
 	else {
 		$consent = 0;
 	}
+    echo $salt . '<br>';
+    echo $password . '<br>';
+    echo $verification . '<br>';
 	// create user's record in database
 	$conn->query("INSERT INTO users (username,email,news,pass,salt,verification) VALUES ('{$_POST['username']}','{$_POST['email']}',{$consent},'{$password}','{$salt}','{$verification}');");
 	$userID = $conn->insert_id;
@@ -48,12 +51,12 @@ if (!$taken) {
         $mail->SMTPAuth = true;
         $mail->Username = $config['email']['user'];
         $mail->Password = $config['email']['pass'];
-        $mail->SMTPSecure = 'ssl';
+        $mail->SMTPSecure = 'tls';
         $mail->Port = $config['email']['port'];
 
         //Recipients
-        $mail->setFrom($config['email']['user'], $config['email']['name']);
-        $mail->addBCC($config['email']['user']);
+        $mail->setFrom($config['email']['from'], $config['email']['name']);
+        $mail->addBCC($config['email']['from']);
         $mail->addBCC($_POST['email']);
 
         //Content
@@ -64,7 +67,7 @@ if (!$taken) {
             <div style="color:#202428;background-color:#fff;padding:20px 20px">
                 <p>Hi ' .  $_POST['username'] . ',</p>
                 <p>Welcome to the fruit machine! I am so glad that you have chosen to play my fruit machine. To confirm your account and get started, please click the button below.</p>
-                <a style="color:#fff;background-color:#27a545;width:250px;display:block;margin:0 auto;border:none;border-radius:5px;padding:10px;text-align:center;text-decoration:none;font-size:18px" href="' . $config['server']['baseDomain'] . 'verify?unique=' . $verification . '&user=' . $userID . '" target="_blank">Verify</a>
+                <a style="color:#fff;background-color:#27a545;width:250px;display:block;margin:0 auto;border:none;border-radius:5px;padding:10px;text-align:center;text-decoration:none;font-size:18px" href="' . $config['server']['baseDomain'] . 'verify.php?unique=' . $verification . '&user=' . $userID . '" target="_blank">Verify</a>
                 <p><sub>Un-verified accounts are purged on a regular basis so verify as soon as you can to avoid having to sign up again.</sub></p>
             </div>
         ' . $config['email']['signature'];
@@ -78,12 +81,12 @@ if (!$taken) {
         $_SESSION['alert'] = 'Verification email failed to send!';
         $_SESSION['alert-type'] = 'danger';
     }
-	header('Location: index');
+	echo '<script>window.location = "index.php"</script>';
 }
 
 // if username is taken alert user that the username is taken and redirect to login
 else {
 	$_SESSION['alert'] = 'Username taken';
 	$_SESSION['alert-type'] = 'danger';
-	header('Location: index');
+	echo '<script>window.location = "index.php"</script>';
 }

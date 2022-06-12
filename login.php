@@ -20,7 +20,7 @@ if (isset($userID)) {
 	if ($user['verified'] != 1) {
 	    $_SESSION['alert'] = 'Account has not been verified!';
 	    $_SESSION['alert-type'] = 'danger';
-	    header('Location: index');
+	    echo '<script>window.location = "index.php"</script>';
     } else {
         if (hash('sha512', $user['salt'] . $_POST['password']) === $user['pass'] && $user['verified'] == 1) {
             $_SESSION['username'] = $user['username'];
@@ -28,15 +28,15 @@ if (isset($userID)) {
             $_SESSION['verified'] = true;
             $_SESSION['alert'] = 'Logged in';
             $_SESSION['alert-type'] = 'success';
-            header('Location: play');
+            echo '<script>window.location = "play.php"</script>';
         } else {
             $_SESSION['alert'] = 'Incorrect username or password';
             $_SESSION['alert-type'] = 'danger';
-            header('Location: index');
+            echo '<script>window.location = "index.php"</script>';
         }
     }
 } else {
 	$_SESSION['alert'] = 'Incorrect username or password';
 	$_SESSION['alert-type'] = 'danger';
-	header('Location: index');
+	echo '<script>window.location = "index.php"</script>';
 }

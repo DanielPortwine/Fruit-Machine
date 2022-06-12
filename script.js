@@ -42,7 +42,7 @@ $(document).ready(function(){
 
 	// logout
 	$("#logoutButton").click(function(){
-		window.location = 'logout';
+		window.location = 'logout.php';
 	});
 
 	// making the user active when they perform actions
@@ -60,14 +60,14 @@ $(document).ready(function(){
 		mouseMoved = false;
 	}
 	function setActive(){
-		$.get("setActive");
+		$.get("setActive.php");
 	}
 
 	// get item names
 	var items = [];
 	$.ajax({
 		type: 'GET',
-		url: 'findItems',
+		url: 'findItems.php',
 		success: function(data) {
 			items = data.split(',');
 			//items[items.length-1] = items[items.length-1].substring(0,items[items.length-1].length-1);
@@ -101,14 +101,14 @@ $(document).ready(function(){
 			$("#spinButton").attr("disabled",true);
 			for (i=1;i<=5;i++){
 				var item = items[itemsSpun[i-1]];
-				var time = 5000 + (i*1000);
+				var time = 1000 + (i*1000);
 				createInterval(i);
 				setTimeout(changeItem,time,i,item);
 			}
 			setTimeout(resetSpin,time);
 			$.ajax({
 				type:'POST',
-				url: 'saveResults',
+				url: 'saveResults.php',
 				data: {result: itemsSpun},
 				success: function(data) {
 					setTimeout(function() {$("#xpGained").text('+' + data + 'xp');}, 4000 );
@@ -119,7 +119,7 @@ $(document).ready(function(){
 			});
 			$.ajax({
 				type: 'GET',
-				url:'getLevel',
+				url:'getLevel.php',
 				success: function(data) {
 					$("#userLevel").text(data);
 				}
@@ -138,7 +138,7 @@ $(document).ready(function(){
 	$("#spinButton").click(function() {
 		$.ajax({
 			type: 'GET',
-			url: 'spin',
+			url: 'spin.php',
 			success: function(data) {
 				if (data[0] == '!'){
 					canSpin = false;
@@ -163,7 +163,7 @@ $(document).ready(function(){
 	function dailySpinCountdown() {
 		$.ajax({
 			type: 'GET',
-			url: 'dailySpinTime',
+			url: 'dailySpinTime.php',
 			success: function(data) {
 				data = new Date(parseInt(data));
 				countdownInterval = setInterval(function () {
@@ -204,7 +204,7 @@ $(document).ready(function(){
 	$("#dailySpinButton").click(function(){
 		$.ajax({
 			type: 'POST',
-			url: 'getDailySpins',
+			url: 'getDailySpins.php',
 			success: function(data) {
 				if (data[0] == 'S'){
 					showAlert(data,'success');
@@ -225,7 +225,7 @@ $(document).ready(function(){
 		var spinData = [];
 		$.ajax({
 			type: 'POST',
-			url: 'spinsLeft',
+			url: 'spinsLeft.php',
 			data: {type: 'spin'},
 			success: function(data) {
 				var strArr = data.split(',');
@@ -243,7 +243,7 @@ $(document).ready(function(){
 	function updateBeer() {
 		$.ajax({
 			type: 'POST',
-			url: 'spinsLeft',
+			url: 'spinsLeft.php',
 			data: {type: 'beer'},
 			success: function(data) {
 				$('#beersLeft').text(data);
@@ -256,7 +256,7 @@ $(document).ready(function(){
 	$("#beerButton").click(function(){
 		$.ajax({
 			type: 'GET',
-			url: 'useBeer',
+			url: 'useBeer.php',
 			success: function(data) {
 				if (data[0] == '2') {
 					showAlert(data, 'success');
@@ -285,7 +285,7 @@ $(document).ready(function(){
 	$("#adminSpins").click(function(){
 		$.ajax({
 			type: 'GET',
-			url: 'adminSpins',
+			url: 'adminSpins.php',
 			complete: function() {
 				showSpins();
 			}
@@ -296,7 +296,7 @@ $(document).ready(function(){
 	$("#adminBeers").click(function(){
 		$.ajax({
 			type: 'GET',
-			url: 'adminBeers',
+			url: 'adminBeers.php',
 			complete: function() {
 				updateBeer();
 			}

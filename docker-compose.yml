@@ -1,0 +1,39 @@
+version: '3.8'
+networks:
+  fruit-machine:
+services:
+  php-apache-environment:
+    restart: unless-stopped
+    container_name: php-apache
+    build: ./docker/php
+    volumes:
+      - .:/var/www/html/
+    ports:
+      - "80:80"
+    networks:
+      - fruit-machine
+  mysql:
+    restart: unless-stopped
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    image: mysql:8.0.19
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./docker/mysql:/docker-entrypoint-initdb.d
+      - ./storage/mysql:/var/lib/mysql
+    networks:
+      - fruit-machine
+    environment:
+      - MYSQL_DATABASE=fruitmachine
+      - MYSQL_USER=fruitmachine
+      - MYSQL_PASSWORD=53cur3Pa55w0rd
+      - MYSQL_ROOT_PASSWORD=M0r353cur3Pa55w0rd!
+  maildev:
+    restart: unless-stopped
+    container_name: maildev
+    image: djfarrelly/maildev
+    ports:
+      - "1080:80"
+    networks:
+      - fruit-machine
